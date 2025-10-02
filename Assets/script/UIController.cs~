@@ -1,0 +1,20 @@
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class UIController : MonoBehaviour
+{
+    [SerializeField] GameObject sampleElement;
+    private UIDocument _uiDocument;
+    
+    void Start()
+    {
+	var bo = Instantiate(sampleElement);
+	_uiDocument = bo.GetComponent<UIDocument>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
