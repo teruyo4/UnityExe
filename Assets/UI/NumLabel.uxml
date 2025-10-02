@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/NumLabel.uss?fileID=7433441132597879392&amp;guid=47f2550f755f980d6b005ecff0c65b82&amp;type=3#NumLabel" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement style="height: 10%; top: 30%;">
+            <ui:Label text="1234567890" style="font-size: 150px; color: rgb(250, 4, 4); -unity-text-align: upper-center;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

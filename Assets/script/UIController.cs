@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,17 +9,15 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject sampleElement;
     private UIDocument _uiDocument;
     
-    void Start()
-    {
+    void Start() {
 	var bo = Instantiate(sampleElement);
 	_uiDocument = bo.GetComponent<UIDocument>();
-	var btn = _uiDocument.rootVisualElement.Q<Button>("button1");
-	btn.clickable.clicked += () => {Debug.Log("clicked");};
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+	// set click function
+	foreach (int i in new List<int> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}) {
+	    var btn = _uiDocument.rootVisualElement.Q<Button>($"button{i}");
+	    btn.clickable.clicked += () => {Debug.Log($"clicked{i}");};
+	}
+	
     }
 }

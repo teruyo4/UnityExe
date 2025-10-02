@@ -9,17 +9,17 @@
                     <ui:Button text="3" name="button3" class="button" />
                 </ui:VisualElement>
                 <ui:VisualElement name="No2" class="line" style="top: 0%; left: 0%; flex-direction: row;">
-                    <ui:Button text="4" class="button" />
-                    <ui:Button text="5" class="button" />
-                    <ui:Button text="6" class="button" />
+                    <ui:Button text="4" name="button4" class="button" />
+                    <ui:Button text="5" name="button5" class="button" />
+                    <ui:Button text="6" name="button6" class="button" />
                 </ui:VisualElement>
                 <ui:VisualElement name="No3" class="line" style="top: 0%; left: 0%; flex-direction: row;">
-                    <ui:Button text="7" name="Button" class="button" />
-                    <ui:Button text="8" name="Button" class="button" />
-                    <ui:Button text="9" name="Button" class="button" />
+                    <ui:Button text="7" name="button7" class="button" />
+                    <ui:Button text="8" name="button8" class="button" />
+                    <ui:Button text="9" name="button9" class="button" />
                 </ui:VisualElement>
                 <ui:VisualElement name="No4" class="line" style="top: 0%; left: 0%; flex-direction: row;">
-                    <ui:Button text="0" name="Button" class="button" />
+                    <ui:Button text="0" name="button0" class="button" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
