@@ -14,19 +14,19 @@
     margin-left: 2%;
     margin-right: 2%;
     position: relative;
-    font-size: 130px;
+    font-size: 32px;
     border-left-color: rgb(217, 30, 30);
     border-right-color: rgb(217, 30, 30);
     border-top-color: rgb(231, 112, 112);
     border-bottom-color: rgb(125, 19, 19);
-    border-top-width: 20px;
-    border-right-width: 20px;
-    border-bottom-width: 20px;
-    border-left-width: 20px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
     -unity-text-align: middle-center;
     --margins-size: 1%;
@@ -41,28 +41,16 @@
 
 .button:hover {
     background-color: rgba(21, 67, 233, 0.28);
-    width: 32%;
     left: auto;
     padding-left: 0%;
     padding-right: 0%;
     margin-left: 0%;
     margin-right: 0%;
     position: relative;
-    font-size: 150px;
     border-left-color: rgb(30, 54, 217);
     border-right-color: rgb(30, 50, 217);
     border-top-color: rgb(112, 136, 231);
     border-bottom-color: rgb(19, 29, 125);
-    border-top-width: 20px;
-    border-right-width: 20px;
-    border-bottom-width: 20px;
-    border-left-width: 20px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
-    -unity-text-align: middle-center;
     --margins-size: 0.5%;
     margin-bottom: var(--margins-size);
     margin-top: var(--margins-size);
@@ -70,6 +58,7 @@
     transition-duration: 100ms;
     transition-timing-function: ease-out-cubic;
     transition-delay: 0s;
+    width: 32%;
 }
 
 .button:active {
@@ -81,21 +70,10 @@
     margin-left: 2%;
     margin-right: 2%;
     position: relative;
-    font-size: 110px;
     border-left-color: rgb(30, 54, 217);
     border-right-color: rgb(30, 50, 217);
     border-top-color: rgb(13, 39, 142);
     border-bottom-color: rgb(105, 116, 221);
-    border-top-width: 20px;
-    border-right-width: 20px;
-    border-bottom-width: 20px;
-    border-left-width: 20px;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-    border-bottom-left-radius: 50px;
-    -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
-    -unity-text-align: middle-center;
     --margins-size: 1.5%;
     margin-bottom: var(--margins-size);
     margin-top: var(--margins-size);
@@ -158,4 +136,10 @@
     height: 100%;
     color: rgb(219, 15, 15);
     background-color: rgba(0, 0, 0, 0);
+}
+
+.num-label {
+    -unity-text-align: upper-center;
+    -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
+    font-size: 32px;
 }

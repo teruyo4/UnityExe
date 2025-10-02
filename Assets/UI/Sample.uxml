@@ -1,7 +1,12 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/sample.uss?fileID=7433441132597879392&amp;guid=75cdd7e9e521dbbd1b0e9606023174ca&amp;type=3#sample" />
-    <ui:VisualElement name="Top" style="flex-grow: 1;">
-        <ui:VisualElement name="KeyLayout" style="width: 90%; height: 45%; top: 50%; left: 5%; right: 5%; background-color: rgba(55, 204, 77, 0.11); align-items: flex-start; border-left-color: rgb(255, 72, 0); border-right-color: rgb(255, 72, 0); border-top-color: rgb(255, 72, 0); border-bottom-color: rgb(255, 72, 0); border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; border-bottom-left-radius: 30px;">
+    <ui:VisualElement name="Top" style="flex-grow: 1; justify-content: flex-end;">
+        <ui:VisualElement name="NumLabel" style="width: 90%; height: 10%; top: auto; left: 5%; right: 5%; background-color: rgba(55, 204, 77, 0.11); align-items: flex-start; border-left-color: rgb(255, 72, 0); border-right-color: rgb(255, 72, 0); border-top-color: rgb(255, 72, 0); border-bottom-color: rgb(255, 72, 0); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
+            <ui:VisualElement name="NumLabelDisp" style="width: 90%; height: 80%; left: 5%; right: 5%; top: 10%; background-color: rgba(123, 120, 120, 0.75);">
+                <ui:Label text="Label" name="NumLabelStr" class="num-label" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="KeyLayout" style="width: 90%; height: 45%; top: auto; left: 5%; right: 5%; background-color: rgba(55, 204, 77, 0.11); align-items: flex-start; border-left-color: rgb(255, 72, 0); border-right-color: rgb(255, 72, 0); border-top-color: rgb(255, 72, 0); border-bottom-color: rgb(255, 72, 0); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
             <ui:VisualElement name="panel1" class="test" style="align-items: center;">
                 <ui:VisualElement name="No1" class="line" style="top: 0%; left: 0%; flex-direction: row;">
                     <ui:Button text="1" name="button1" class="button" />
