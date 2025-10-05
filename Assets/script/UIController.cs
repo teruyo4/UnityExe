@@ -24,9 +24,10 @@ public class UIController : MonoBehaviour
     }
 
     void InputNumberLine(int num) {
-	string str = (string)numLabel.text;
-	if (str.Length > 7)
-	    str = str.Substring(1, 7);
-	numLabel.text = $"{str}{num}";
+        GetComponent<AudioSource>().Play();
+        string str = (string)numLabel.text;
+        if (str.Length > 7)
+            str = str.Substring(1, 7);
+        numLabel.text = $"{str}{num}";
     }
 }
