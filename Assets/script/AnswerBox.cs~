@@ -1,0 +1,14 @@
+using UnityEngine;
+
+public class AnswerBox : MonoBehaviour
+{
+    void Start()
+    {
+        
+    }
+
+    void Update()
+    {
+        
+    }
+}

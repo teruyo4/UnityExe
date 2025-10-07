@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FlyFormula : MonoBehaviour
+{
+    private int numFormula;
+    private Sprite[] sprites;
+    
+    void Start() {
+        Vector3 vec = new Vector3(0f, 4f, 0f);
+        this.transform.position = vec;
+    }
+    
+    void Setup(int target) {
+        numFormula = target;
+        var img = GetComponent<SpriteRenderer>();
+        var resq = $"q99_{numFormula}";
+
+        sprites = Resources.LoadAll<Sprite>("q99");
+        img.sprite = Array.Find(sprites, e => e.name == resq);
+
+    }
+}

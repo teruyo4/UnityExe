@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 public class UIController : MonoBehaviour
 {
     [SerializeField] GameObject sampleElement;
+    [SerializeField] GameManager gm;
+    
     private UIDocument _uiDocument;
     private Label numLabel;
     
@@ -24,10 +26,23 @@ public class UIController : MonoBehaviour
     }
 
     void InputNumberLine(int num) {
-        GetComponent<AudioSource>().Play();
-        string str = (string)numLabel.text;
-        if (str.Length > 7)
-            str = str.Substring(1, 7);
-        numLabel.text = $"{str}{num}";
+        //        GetComponent<AudioSource>().Play();
+        //        string str = (string)numLabel.text;
+        //        if (str.Length > 7)
+        //            str = str.Substring(1, 7);
+        //        numLabel.text = $"{str}{num}";
+
+        switch (gm.InputNumber(num)) {
+            case 0:
+                break;
+            case 1:
+                GetComponent<AudioSource>().Play();
+                numLabel.text = $"{num}";
+                break;
+            case 2:
+                GetComponent<AudioSource>().Play();
+                numLabel.text = "";
+                break;
+        }
     }
 }
