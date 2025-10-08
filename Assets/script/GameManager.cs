@@ -1,27 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int numFormula;  // 式番号
     public int lhs;
     public int rhs;
     public int numAnswer;   // 答え
     public int numNext;     // 次にインプットすべき数字
     public int flag;
-    //    public FlyFormula flyFormula;
-    public FormulaObj fo;
-    public AnswerBox ab;
+    //    public AnswerBox answerBox;
+    public FormulaObj formulaObj;
+    private FormulaObj formulaInst;
+    private List<FormulaObj> formulaList = new List<FormulaObj>();
+    private int curFObj = 0;
     
     void Start() {
         MakeProblem();
-        fo.Setup(lhs, rhs);
+        //        Debug.Log($"{lhs}x{rhs}");
+        formulaInst = Instantiate(formulaObj);
+        formulaInst.Setup(lhs, rhs);
+        formulaList.Add(formulaInst);
     }
 
     // MakeProblem) ランダムに九九の問題を決める。
     void MakeProblem() {
-        numFormula = Random.Range(0, 81);
-        lhs = (int)(numFormula / 9) + 1; // 左項
-        rhs = (numFormula % 9) +1;       // 右項
+        var num = Random.Range(0, 81);
+        lhs = (int)(num / 9) + 1; // 左項
+        rhs = (num % 9) +1;       // 右項
         numAnswer = lhs * rhs;              // 答え
 
         if (numAnswer > 9) {
@@ -29,25 +34,30 @@ public class GameManager : MonoBehaviour
             flag = 0;
         } else {
             numNext = numAnswer;
-            flag = 2;
+            flag = 1;
         }
     }
 
+    // 押された数字キーに対する動作
+    // 押すべき数字でなければ0を返し、十の位の入力なら１を、正解なら２を返す。
     public int InputNumber(int n) {
-        if (n != numNext) {
-            return 0;
-        } else {
-            if (flag == 0) {
-                ab.PreAnswer(numNext);
-                numNext = numAnswer % 10;
-                flag = 1;
-                return 1;
-            } else {
-                ab.Answer(numAnswer);
-                MakeProblem();
-                fo.Setup(lhs, rhs);
-            }
+        FormulaObj formulaInst;
+        FormulaObj fo;
+        int ret;
+        
+        fo = formulaList[curFObj];
+        ret = fo.InputNumber(n);
+        if (ret == 2) {
+            formulaList.Remove(fo);
+            Destroy(fo);
+
+            MakeProblem();
+            formulaInst = Instantiate(formulaObj);
+            formulaInst.Setup(lhs, rhs);
+            formulaList.Add(formulaInst);
         }
-        return 2;
+
+        return ret;
+        
     }
 }
