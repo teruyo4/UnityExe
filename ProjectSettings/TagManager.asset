@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - answerbox
+  - gamemanager
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Character
+  - background
   - 
   - 
   - 
@@ -41,6 +42,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 3117853355
+    locked: 0
+  - name: Character
+    uniqueID: 2351244175
+    locked: 0
+  - name: UI
+    uniqueID: 1802181035
     locked: 0
   m_RenderingLayers:
   - Default

@@ -3,61 +3,81 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int lhs;
-    public int rhs;
-    public int numAnswer;   // 答え
-    public int numNext;     // 次にインプットすべき数字
-    public int flag;
-    //    public AnswerBox answerBox;
     public FormulaObj formulaObj;
+    public rabbit rab;
+    public AudioClip[,] audioC = new AudioClip[9, 9];
+    
     private FormulaObj formulaInst;
     private List<FormulaObj> formulaList = new List<FormulaObj>();
-    private int curFObj = 0;
+    private float startTime;
+    
+    private float intervalTime = 5.0f; // 次に出す問題までの期間
+    private float nextInterval;
+
+    void Awake() {
+        // audio clip の読み込み
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                audioC[x, y] = Resources.Load<AudioClip>($"voice/{x+1}x{y+1}");
+            }
+        }
+    }
     
     void Start() {
-        MakeProblem();
-        //        Debug.Log($"{lhs}x{rhs}");
+        SpawnFObj();
+        formulaInst.changeCur();
+        SpawnFObj();
+    }
+
+    void FixedUpdate() {
+        if (Time.time - startTime > nextInterval) {
+            SpawnFObj();
+        }
+    }
+
+    void SpawnFObj() {
         formulaInst = Instantiate(formulaObj);
-        formulaInst.Setup(lhs, rhs);
+        formulaInst.Setup();
         formulaList.Add(formulaInst);
+        nextInterval = intervalTime;
+        startTime = Time.time;
     }
 
-    // MakeProblem) ランダムに九九の問題を決める。
-    void MakeProblem() {
-        var num = Random.Range(0, 81);
-        lhs = (int)(num / 9) + 1; // 左項
-        rhs = (num % 9) +1;       // 右項
-        numAnswer = lhs * rhs;              // 答え
-
-        if (numAnswer > 9) {
-            numNext = (int)(numAnswer / 10);
-            flag = 0;
-        } else {
-            numNext = numAnswer;
-            flag = 1;
-        }
-    }
-
-    // 押された数字キーに対する動作
-    // 押すべき数字でなければ0を返し、十の位の入力なら１を、正解なら２を返す。
+    // UIからの入力を受付け式Objに送る。正解だった場合Objの交代を指示する。
+    // UIに、不正解/１桁正解/正解を分けて音を出させるために、返り値を分ける。
     public int InputNumber(int n) {
-        FormulaObj formulaInst;
-        FormulaObj fo;
-        int ret;
-        
-        fo = formulaList[curFObj];
-        ret = fo.InputNumber(n);
+        FormulaObj fo = formulaList[0];
+
+        var ret = fo.InputNumber(n);
         if (ret == 2) {
-            formulaList.Remove(fo);
-            Destroy(fo);
-
-            MakeProblem();
-            formulaInst = Instantiate(formulaObj);
-            formulaInst.Setup(lhs, rhs);
-            formulaList.Add(formulaInst);
+            CorrectAnswer(fo);
         }
-
+        Debug.Log($"ret = {ret}.");
         return ret;
-        
     }
+    
+    private void CorrectAnswer(FormulaObj fo) {
+        // 正解なら式Objリストから現状の式Objを外す。
+        formulaList.Remove(fo);
+        formulaList[0].changeCur();
+        if (formulaList.Count == 1) {
+            nextInterval = 0; // すぐ次の問題を出すためにインターバルなくす。
+        }
+        // 回答までの時間で分岐
+        var diff = Time.time - startTime;
+        if (diff < 1.0f) {
+            rab.accelX += 0.02f;
+            Debug.Log("Excellent!!");
+        } else if (diff < 1.5f) {
+            rab.accelX += 0.01f;
+            Debug.Log("Good!");
+        } else if (diff < 2.5f) {
+            rab.accelX += 0.0f;
+            Debug.Log("Normal.");
+        } else {
+            rab.accelX -= 0.02f;
+            Debug.Log("bad.");
+        }
+    }
+
 }
