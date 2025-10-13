@@ -2,30 +2,35 @@ using UnityEngine;
 
 public class rabbit : MonoBehaviour
 {
-    public float accelX;
     private float speedX;
-    
-    public float span = 3f;
-    private float curTime = 0f;
+    private int puTime;
+    private float posx;
 
-    private Rigidbody2D rb;
+    private float normalsp = -0.002f;
 
-    void Start()
-    {
-        accelX = -0.01f;
-        speedX = 0f;
-
-        rb = this.GetComponent<Rigidbody2D>();
+    void Start() {
+        ChangeBehaviour(normalsp, 0, 1f);
     }
 
-    void Update()
-    {
-        curTime += Time.deltaTime;
-
-        if (curTime > span) {
-            speedX += accelX;
-            curTime = 0f;
+    // 0.02秒に１回呼ばれる。
+    void FixedUpdate() {
+        var vec3 = this.transform.position;
+        vec3.x += speedX;
+        this.transform.position = vec3;
+        posx = vec3.x;
+        if (puTime > 0) {
+            puTime--;
+            if (puTime <= 0) {
+                ChangeBehaviour(normalsp, 0, 1f);
+            }
         }
-        rb.AddForce(new Vector3(speedX, 0f, 0f));
+    }
+
+    // 挙動を変える
+    public void ChangeBehaviour(float sp, int ti, float animsp) {
+        var anim = this.gameObject.GetComponent<Animator>();
+        speedX = sp;
+        puTime = ti;
+        anim.speed = animsp;
     }
 }

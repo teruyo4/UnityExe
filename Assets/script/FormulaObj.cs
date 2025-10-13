@@ -48,7 +48,7 @@ public class FormulaObj : MonoBehaviour {
             .Play();
     }
 
-    // 自分の番が来たら。
+    // 自分の番が来たら、動きをズームアップに変更＆九九読上げの仕込み（１秒後に発音）。
     async public void changeCur() {
         DOTween.Sequence()
             .Join(this.transform.DOLocalMove(new Vector3(0f, 2.00f, 0f), 5.0f))

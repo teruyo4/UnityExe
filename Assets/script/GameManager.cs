@@ -4,7 +4,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public FormulaObj formulaObj;
-    public rabbit rab;
+    public rabbit rab, rabInst;
+    public alice aliceObj, aliceInst;
+    public Back backImage;
+    public KeyboardBack backImage2;
     public AudioClip[,] audioC = new AudioClip[9, 9];
     
     private FormulaObj formulaInst;
@@ -24,6 +27,7 @@ public class GameManager : MonoBehaviour
     }
     
     void Start() {
+        SpawnChar();
         SpawnFObj();
         formulaInst.changeCur();
         SpawnFObj();
@@ -33,6 +37,13 @@ public class GameManager : MonoBehaviour
         if (Time.time - startTime > nextInterval) {
             SpawnFObj();
         }
+    }
+    
+    void SpawnChar() {
+        aliceInst = Instantiate(aliceObj);
+        rabInst = Instantiate(rab);
+        Instantiate(backImage);
+        Instantiate(backImage2);
     }
 
     void SpawnFObj() {
@@ -52,7 +63,6 @@ public class GameManager : MonoBehaviour
         if (ret == 2) {
             CorrectAnswer(fo);
         }
-        Debug.Log($"ret = {ret}.");
         return ret;
     }
     
@@ -63,20 +73,20 @@ public class GameManager : MonoBehaviour
         if (formulaList.Count == 1) {
             nextInterval = 0; // すぐ次の問題を出すためにインターバルなくす。
         }
-        // 回答までの時間で分岐
+        // 回答までの時間でラビットの動きを変化させる。
+        // 超速: １秒間、速度を+2で動かす。アニメ速度増し増し
+        // 速し: １秒間、速度を+1で動かす。アニメ速度増し。
+        // 普通: １秒間、速度は0にする。
+        // 遅し: 速度は変わらない。
         var diff = Time.time - startTime;
-        if (diff < 1.0f) {
-            rab.accelX += 0.02f;
-            Debug.Log("Excellent!!");
-        } else if (diff < 1.5f) {
-            rab.accelX += 0.01f;
-            Debug.Log("Good!");
+        if (diff < 1.5f) {
+            rabInst.ChangeBehaviour(0.004f, 50, 3f);
+        } else if (diff < 2.0f) {
+            rabInst.ChangeBehaviour(0.002f, 50, 2f);
         } else if (diff < 2.5f) {
-            rab.accelX += 0.0f;
-            Debug.Log("Normal.");
+            rabInst.ChangeBehaviour(0.0f, 50, 1f);
         } else {
-            rab.accelX -= 0.02f;
-            Debug.Log("bad.");
+            rabInst.ChangeBehaviour(-0.001f, 50, 1f);
         }
     }
 
