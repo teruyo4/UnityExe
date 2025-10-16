@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   formulaObj: {fileID: 1528728969308419763, guid: 7d9910578d7bc74b98071420c370a69f, type: 3}
+  kb: {fileID: 1154906781}
   rab: {fileID: 2885188816664306955, guid: fe847a38bead991329457f3f27fd10e2, type: 3}
   rabInst: {fileID: 0}
   aliceObj: {fileID: -7677954274779768595, guid: 31f26358a47ead9db812e79351f158bc, type: 3}
@@ -561,7 +562,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1802181035
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!224 &855067621
@@ -614,6 +615,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIController
   sampleElement: {fileID: 888138750875880155, guid: 47cc098c2f95f71fe9b72585b70c7967, type: 3}
+  startLabel: {fileID: 2443443862850057225, guid: 77936ad073bf886eb9b530ef36739b43, type: 3}
+  finished: {fileID: 608507937630892657, guid: bcba984ce800bad878889deb2d2f9cb2, type: 3}
   gm: {fileID: 465054105}
 --- !u!4 &1154906782
 Transform:

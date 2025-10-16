@@ -65,6 +65,7 @@ public class FormulaObj : MonoBehaviour {
         DOTween.Kill(this.transform);
         DOTween.Sequence()
             .Join(this.transform.DOLocalMove(new Vector3(6f, 6f, 0f), 1.0f)
+                  .SetLink(this.gameObject)
                   .OnComplete(() => {
                       this.transform.DOComplete();
                       Destroy(this.gameObject);

@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class alice : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+public class alice : MonoBehaviour {
+    private GameManager gm;
+
+    void Awake() {
+        gm = (GameObject.FindWithTag("gamemanager")).GetComponent<GameManager>();
+    }
+    
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.tag == "rabbit") {
+            gm.becaught();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void remove() {
+        Destroy(this.gameObject);
     }
 }

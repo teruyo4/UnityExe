@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public FormulaObj formulaObj;
+    public UIController kb;
     public rabbit rab, rabInst;
     public alice aliceObj, aliceInst;
     public Back backImage;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     
     private float intervalTime = 5.0f; // 次に出す問題までの期間
     private float nextInterval;
+    private int phase = 0;
 
     void Awake() {
         // audio clip の読み込み
@@ -25,25 +27,56 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    
-    void Start() {
+    public void GameStart() {
+        kb.SpawnKeyboard();
         SpawnChar();
         SpawnFObj();
         formulaInst.changeCur();
         SpawnFObj();
+        phase = 1;
+    }
+    
+    public void GameReStart() {
+        DestroyChar();
+        SpawnChar();
+        SpawnFObj();
+        formulaInst.changeCur();
+        SpawnFObj();
+        phase = 1;
+    }
+
+    public void becaught() {
+        phase = 0;
+        var anim = aliceInst.GetComponent<Animator>();
+        anim.speed = 0f;
+        rabInst.ChangeBehaviour(0f, -10, 0);
+        DestroyFObj();
+        kb.SpawnFinished();
+    }
+    
+    void Start() {
+        kb.SpawnStartLabel();
+        Instantiate(backImage);
+        Instantiate(backImage2);
+        phase = 0;
     }
 
     void FixedUpdate() {
-        if (Time.time - startTime > nextInterval) {
-            SpawnFObj();
+        if (phase == 1) {
+            if (Time.time - startTime > nextInterval) {
+                SpawnFObj();
+            }
         }
     }
     
     void SpawnChar() {
-        aliceInst = Instantiate(aliceObj);
-        rabInst = Instantiate(rab);
-        Instantiate(backImage);
-        Instantiate(backImage2);
+        aliceInst = Instantiate(aliceObj, new Vector3(-1.6f, -0.04f, 0f), Quaternion.identity);
+        rabInst = Instantiate(rab, new Vector3(0f, -0.04f, 0f), Quaternion.identity);
+    }
+
+    void DestroyChar() {
+        aliceInst.remove();
+        rabInst.remove();
     }
 
     void SpawnFObj() {
@@ -52,6 +85,12 @@ public class GameManager : MonoBehaviour
         formulaList.Add(formulaInst);
         nextInterval = intervalTime;
         startTime = Time.time;
+    }
+    void DestroyFObj() {
+        foreach (var obj in formulaList) {
+            obj.FinishFormula();
+        }
+        formulaList.Clear();
     }
 
     // UIからの入力を受付け式Objに送る。正解だった場合Objの交代を指示する。

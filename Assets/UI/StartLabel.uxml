@@ -1,0 +1,13 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/StartLabel.uss?fileID=7433441132597879392&amp;guid=ac6eb844e79e84acd8019035cc8d09b3&amp;type=3#StartLabel" />
+    <ui:VisualElement name="Top" style="flex-grow: 1;">
+        <ui:VisualElement name="Frame" style="flex-grow: 0; top: 20%; left: 5%; right: auto; width: 90%; height: 30%; flex-shrink: 0;">
+            <ui:VisualElement name="StrStart" style="flex-grow: 0; flex-shrink: 1; height: 60%;">
+                <ui:Label text="START" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/%E5%92%8C%E9%A2%A8%E3%81%BD%E3%81%A3%E3%81%B7.ttf?fileID=12800000&amp;guid=5eb6f64963c6192bbbdb07788a12c0a7&amp;type=3#和風ぽっぷ&quot;); font-size: 300px; -unity-text-align: upper-center; background-color: rgba(0, 0, 0, 0); color: rgb(226, 22, 22); -unity-text-outline-width: 15px; -unity-text-outline-color: rgb(10, 9, 9); padding-bottom: 4px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="buttonpos" style="flex-grow: 1;">
+                <ui:Button text="Fight!" name="startbutton" style="font-size: 150px; background-color: rgba(224, 71, 71, 0.34); -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/%E5%92%8C%E9%A2%A8%E3%81%BD%E3%81%A3%E3%81%B7.ttf?fileID=12800000&amp;guid=5eb6f64963c6192bbbdb07788a12c0a7&amp;type=3#和風ぽっぷ&quot;); border-top-color: rgb(236, 141, 141); border-top-width: 30px; border-right-width: 30px; border-bottom-width: 30px; border-left-width: 30px; border-top-left-radius: 100px; border-top-right-radius: 100px; border-bottom-right-radius: 100px; border-bottom-left-radius: 100px; border-bottom-color: rgb(202, 18, 18); border-right-color: rgb(99, 27, 27); border-left-color: rgb(226, 204, 204); color: rgb(226, 31, 31); -unity-text-outline-width: 5px; -unity-text-outline-color: rgb(7, 7, 7);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

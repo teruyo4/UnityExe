@@ -33,4 +33,8 @@ public class rabbit : MonoBehaviour
         puTime = ti;
         anim.speed = animsp;
     }
+
+    public void remove() {
+        Destroy(this.gameObject);
+    }
 }
