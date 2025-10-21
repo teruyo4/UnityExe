@@ -18,16 +18,30 @@ public enum Grades {
     Bad
 }
 
+public struct CameraSize {
+    public float sceneScale;
+    public float minDist;
+    public float maxDist;
+}
+
 public class ChaseScene : MonoBehaviour {
 
     public rabbit rabObj, rabInst;
     public alice aliceObj, aliceInst;
 
     private List<Operation> opeList;
+    private List<CameraSize> csList;
+    private int cameraPos = 1;
     private CancellationTokenSource cts;
     private const float staPos = 1.5f;
 
     void Start() {
+        csList = new List<CameraSize>() {
+            new CameraSize { sceneScale = 0.4f, minDist = 3f, maxDist = 5f },
+            new CameraSize { sceneScale = 0.8f, minDist = 2f, maxDist = 4f },
+            new CameraSize { sceneScale = 1.2f, minDist = 1f, maxDist = 3f },
+            new CameraSize { sceneScale = 1.5f, minDist = 0f, maxDist = 2f }
+        };
     }
 
     public void StartChase() {
@@ -74,12 +88,15 @@ public class ChaseScene : MonoBehaviour {
     
     // 動作リストに沿ってキャラクターを動作させる。
     private async void ReflectOperation() {
-        //Debug.Log($"speed = {opeList[0].speed}, animSpeed = {opeList[0].animSpeed}.");
+        Debug.Log($"1: speed = {opeList[0].speed}, duration = {opeList[0].duration}.");
         rabInst.ChangeBehaviour(opeList[0].speed, opeList[0].animSpeed);
         aliceInst.ChangeBehaviour(-opeList[0].speed, 1.0f);
-        if (opeList[0].duration != 0) {
+        //        if (opeList[0].duration != 0) {
+        if (opeList.Count > 1) {
+            Debug.Log($"2: speed = {opeList[0].speed}, duration = {opeList[0].duration}.");
             await UniTask.Delay(opeList[0].duration, cancellationToken: cts.Token).SuppressCancellationThrow();
             opeList.RemoveAt(0);
+            Debug.Log($"count = {opeList.Count}");
             ReflectOperation();
         }
     }                                          
@@ -95,8 +112,19 @@ public class ChaseScene : MonoBehaviour {
         rabInst.remove();
     }
 
-    // Update is called once per frame
-    void Update() {
-        transform.localScale += new Vector3(0.0001f, 0.0001f, 0f);
+    void FixedUpdate() {
+        if (rabInst == null) {
+            return;
+        }
+
+        float charDist = rabInst.transform.position.x - aliceInst.transform.position.x;
+
+        if (charDist < csList[cameraPos].minDist) {
+            cameraPos++;
+            transform.localScale = new Vector3(csList[cameraPos].sceneScale, csList[cameraPos].sceneScale, 0);
+        } else if (charDist > csList[cameraPos].maxDist) {
+            cameraPos--;
+            transform.localScale = new Vector3(csList[cameraPos].sceneScale, csList[cameraPos].sceneScale, 0);
+        }
     }
 }
