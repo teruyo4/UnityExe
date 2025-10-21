@@ -13,6 +13,8 @@ public class FormulaObj : MonoBehaviour {
     private int lhs, rhs, numAnswer;
     private int flag;
     private int numNext;     // 次にインプットすべき数字
+
+    private Sequence seq;
     
     void Awake() {
         // 各種オブジェクトのアタッチ
@@ -31,8 +33,8 @@ public class FormulaObj : MonoBehaviour {
 
     public void Setup() {
         // 初期位置指定
-        this.transform.position = new Vector3(0f, 4.50f, 0f);
-        this.transform.localScale = new Vector3(0.1f, 0.1f, 0f);
+        transform.position = new Vector3(0f, 4.50f, 0f);
+        transform.localScale = new Vector3(0.1f, 0.1f, 0f);
 
         // 各初期値設定
         MakeProblem();
@@ -42,18 +44,18 @@ public class FormulaObj : MonoBehaviour {
         flag = (numAnswer > 9) ? 0 : 1;
 
         // 動きの設定
-        DOTween.Sequence()
-            .Join(this.transform.DOLocalMove(new Vector3(0f, 4.00f, 0f), 5.0f))
-            //            .Join(this.transform.DOScale(new Vector3(2f, 2f, 0f), 5.0f))
-            .Play();
+        seq = DOTween.Sequence();
+        seq.Join(transform.DOLocalMove(new Vector3(0f, 4.00f, 0f), 5.0f))
+            .SetLink(gameObject);
     }
 
     // 自分の番が来たら、動きをズームアップに変更＆九九読上げの仕込み（１秒後に発音）。
     async public void changeCur() {
-        DOTween.Sequence()
-            .Join(this.transform.DOLocalMove(new Vector3(0f, 2.00f, 0f), 5.0f))
-            .Join(this.transform.DOScale(new Vector3(2f, 2f, 0f), 5.0f))
-            .Play();
+        seq.Kill();
+        seq = DOTween.Sequence();
+        seq.Append(transform.DOLocalMove(new Vector3(0f, 2.00f, 0f), 5.0f))
+            .Join(transform.DOScale(new Vector3(2f, 2f, 0f), 5.0f))
+            .SetLink(gameObject);
         // 音声出力
         await UniTask.Delay(TimeSpan.FromSeconds(1.0f));
         audioS.clip = gm.audioC[lhs-1, rhs-1];
@@ -62,19 +64,14 @@ public class FormulaObj : MonoBehaviour {
         
     public void FinishFormula() {
         // 外側に向けて回転させながらフェードアウト
-        DOTween.Kill(this.transform);
-        DOTween.Sequence()
-            .Join(this.transform.DOLocalMove(new Vector3(6f, 6f, 0f), 1.0f)
-                  .SetLink(this.gameObject)
-                  .OnComplete(() => {
-                      this.transform.DOComplete();
-                      Destroy(this.gameObject);
-                  }))
-            .Join(this.transform.DOScale(new Vector3(0.1f, 0.1f, 0f), 1.0f))
-            //            .Join(this.transform.DOFade(0f, 3f);
-            .SetLink(this.gameObject)
-            .Play();
-        
+        seq.Kill();
+        seq = DOTween.Sequence();
+        seq.Append(transform.DOLocalMove(new Vector3(6f, 6f, 0f), 1.0f))
+            .Join(transform.DOScale(new Vector3(0.1f, 0.1f, 0f), 1.0f))
+            .SetLink(gameObject)
+            .OnComplete(() => {
+                Destroy(gameObject);
+            });
     }
 
     // 押された数字キーに対する動作

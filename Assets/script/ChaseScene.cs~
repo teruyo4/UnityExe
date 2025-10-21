@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using UnityEngine;
+
+// キャラクターの１動作を示す
+public struct Operation {
+    public float speed;     // 動く速さ
+    public float animSpeed; // アニメーションの早さ
+    public int duration;  // 動作の続く時間（ミリ秒数）
+}
+
+public enum Grades {
+    Super,
+    Good,
+    Normal,
+    Bad
+}
+
+public class ChaseScene : MonoBehaviour {
+
+    public rabbit rabObj, rabInst;
+    public alice aliceObj, aliceInst;
+
+    private List<Operation> opeList;
+    
+    CancellationTokenSource cts;
+
+    void Start() {
+    }
+
+    public void StartChase() {
+        Time.timeScale = 1.0f;
+        aliceInst = Instantiate(aliceObj, transform);
+        aliceInst.transform.Translate(-1.0f, 0f, 0f);
+        rabInst = Instantiate(rabObj, transform);
+        rabInst.transform.Translate(1.0f, -0.1f, 0f);
+
+        SetDefaultOperation();
+        ExecuteOperation(Grades.Normal);
+    }
+    public void ExecuteOperation(Grades grade) {
+        cts?.Cancel();
+        cts?.Dispose();
+        cts = new();
+        SetDefaultOperation();
+        switch (grade) {
+            case Grades.Super:
+                opeList.Insert(0, new Operation { speed = 0.005f, animSpeed = 3.0f, duration = 1000 });
+                break;
+            case Grades.Good:
+                opeList.Insert(0, new Operation { speed = 0.003f, animSpeed = 2.0f, duration = 1000 });
+                break;
+            case Grades.Normal:
+                opeList.Insert(0, new Operation { speed = 0.001f, animSpeed = 1.2f, duration = 500 });
+                break;
+            default:
+                break;
+        }
+        ReflectOperation();
+    }
+
+    private async void ReflectOperation() {
+        Debug.Log($"speed = {opeList[0].speed}, animSpeed = {opeList[0].animSpeed}, duration = {opeList[0].duration}.");
+        rabInst.ChangeBehaviour(opeList[0].speed, opeList[0].animSpeed);
+        if (opeList[0].duration != 0) {
+            await UniTask.Delay(opeList[0].duration, cancellationToken: cts.Token).SuppressCancellationThrow();
+            opeList.RemoveAt(0);
+            ReflectOperation();
+        }
+    }                                          
+
+
+    public void BeCaught() {
+        aliceInst.GetComponent<Animator>().speed = 0f;
+        rabInst.ChangeBehaviour(0f, 0f);
+        Time.timeScale = 0f;
+    }
+
+    public void ClearCharacter() {
+        aliceInst.remove();
+        rabInst.remove();
+    }
+
+    private void SetDefaultOperation() {
+        opeList?.Clear();
+        opeList = new List<Operation>() {
+            new Operation { speed = -0.001f, animSpeed = 1.0f, duration = 1000 },
+            new Operation { speed = -0.002f, animSpeed = 0.8f, duration = 1000 },
+            new Operation { speed = -0.004f, animSpeed = 0.6f, duration = 0 }
+        };
+    }
+    
+    // Update is called once per frame
+    void Update() {
+        transform.localScale += new Vector3(0.0001f, 0.0001f, 0f);
+    }
+}

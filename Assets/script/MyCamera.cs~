@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public class MyCamera : MonoBehaviour {
+
+    private float timer = 0.0f;
+    private Camera mCamera;
+    
+    void Start() {
+        //    mCamera = GetComponent<Camera>();
+    }
+
+//    // Update is called once per frame
+//    void Update() {
+//        timer += Time.deltaTime;
+//        
+//        if (timer >= 1.0f) {
+//            if (mCamera) {
+//                var siz = mCamera.orthographicSize;
+//                siz -= 0.02f;
+//                mCamera.orthographicSize = siz;
+//                Debug.Log($"siz = {siz}");
+//            }
+//            timer = 0.0f;
+//        }
+//    }
+}

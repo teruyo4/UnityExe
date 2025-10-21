@@ -1,0 +1,7 @@
+OperationCanceledException: The operation was canceled.
+Cysharp.Threading.Tasks.UniTask+DelayPromise.GetResult (System.Int16 token) (at Assets/Plugins/UniTask/Runtime/UniTask.Delay.cs:761)
+ChaseScene.ReflectOperation () (at Assets/script/ChaseScene.cs:68)
+System.Runtime.CompilerServices.AsyncMethodBuilderCore+<>c.<ThrowAsync>b__7_0 (System.Object state) (at <db9d86d68f4243139bf3b25ce22d9ff7>:0)
+UnityEngine.UnitySynchronizationContext+WorkRequest.Invoke () (at /home/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnitySynchronizationContext.cs:156)
+UnityEngine.UnitySynchronizationContext.Exec () (at /home/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnitySynchronizationContext.cs:84)
+UnityEngine.UnitySynchronizationContext.ExecuteTasks () (at /home/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnitySynchronizationContext.cs:110)

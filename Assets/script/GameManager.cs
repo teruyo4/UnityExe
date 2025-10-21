@@ -7,8 +7,7 @@ public class GameManager : MonoBehaviour
     public UIController kb;
     public rabbit rab, rabInst;
     public alice aliceObj, aliceInst;
-    public Back backImage;
-    public KeyboardBack backImage2;
+    public ChaseScene chaseScene;
     public AudioClip[,] audioC = new AudioClip[9, 9];
     
     private FormulaObj formulaInst;
@@ -27,9 +26,15 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    void Start() {
+        kb.SpawnStartLabel();  // タイトルとスタートボタンを表示
+        phase = 0;
+    }
+
     public void GameStart() {
         kb.SpawnKeyboard();
-        SpawnChar();
+        chaseScene.StartChase();
         SpawnFObj();
         formulaInst.changeCur();
         SpawnFObj();
@@ -37,8 +42,8 @@ public class GameManager : MonoBehaviour
     }
     
     public void GameReStart() {
-        DestroyChar();
-        SpawnChar();
+        chaseScene.ClearCharacter();
+        chaseScene.StartChase();
         SpawnFObj();
         formulaInst.changeCur();
         SpawnFObj();
@@ -47,20 +52,11 @@ public class GameManager : MonoBehaviour
 
     public void becaught() {
         phase = 0;
-        var anim = aliceInst.GetComponent<Animator>();
-        anim.speed = 0f;
-        rabInst.ChangeBehaviour(0f, -10, 0);
+        chaseScene.BeCaught();
         DestroyFObj();
         kb.SpawnFinished();
     }
     
-    void Start() {
-        kb.SpawnStartLabel();
-        Instantiate(backImage);
-        Instantiate(backImage2);
-        phase = 0;
-    }
-
     void FixedUpdate() {
         if (phase == 1) {
             if (Time.time - startTime > nextInterval) {
@@ -69,16 +65,6 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    void SpawnChar() {
-        aliceInst = Instantiate(aliceObj, new Vector3(-1.6f, -0.04f, 0f), Quaternion.identity);
-        rabInst = Instantiate(rab, new Vector3(0f, -0.04f, 0f), Quaternion.identity);
-    }
-
-    void DestroyChar() {
-        aliceInst.remove();
-        rabInst.remove();
-    }
-
     void SpawnFObj() {
         formulaInst = Instantiate(formulaObj);
         formulaInst.Setup();
@@ -86,6 +72,7 @@ public class GameManager : MonoBehaviour
         nextInterval = intervalTime;
         startTime = Time.time;
     }
+
     void DestroyFObj() {
         foreach (var obj in formulaList) {
             obj.FinishFormula();
@@ -96,11 +83,9 @@ public class GameManager : MonoBehaviour
     // UIからの入力を受付け式Objに送る。正解だった場合Objの交代を指示する。
     // UIに、不正解/１桁正解/正解を分けて音を出させるために、返り値を分ける。
     public int InputNumber(int n) {
-        FormulaObj fo = formulaList[0];
-
-        var ret = fo.InputNumber(n);
+        var ret = formulaList[0].InputNumber(n);
         if (ret == 2) {
-            CorrectAnswer(fo);
+            CorrectAnswer(formulaList[0]);
         }
         return ret;
     }
@@ -119,13 +104,13 @@ public class GameManager : MonoBehaviour
         // 遅し: 速度は変わらない。
         var diff = Time.time - startTime;
         if (diff < 1.5f) {
-            rabInst.ChangeBehaviour(0.004f, 50, 3f);
+            chaseScene.ExecuteOperation(Grades.Super);
         } else if (diff < 2.0f) {
-            rabInst.ChangeBehaviour(0.002f, 50, 2f);
+            chaseScene.ExecuteOperation(Grades.Good);
         } else if (diff < 2.5f) {
-            rabInst.ChangeBehaviour(0.0f, 50, 1f);
+            chaseScene.ExecuteOperation(Grades.Normal);
         } else {
-            rabInst.ChangeBehaviour(-0.001f, 50, 1f);
+            chaseScene.ExecuteOperation(Grades.Bad);
         }
     }
 
