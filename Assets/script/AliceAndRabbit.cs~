@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class test : MonoBehaviour {
+public class AliceAndRabbit : MonoBehaviour {
     void Start() {
         
     }

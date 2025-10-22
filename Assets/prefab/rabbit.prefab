@@ -127,6 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788523eca85ed3c5c8d41a99cc56e01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::rabbit
+  superKotodama: {fileID: 2071214209642500610, guid: 7e3756ddd3c35bc118381302d7309d70, type: 3}
+  goodKotodama: {fileID: 7559896429752545881, guid: 30068e29a3c92cf0fb909a84648540b4, type: 3}
+  okKotodama: {fileID: 6028703402401332342, guid: a8612ab73eea41e9cb326facbc93b183, type: 3}
+  badKotodama: {fileID: 1713935395320715734, guid: 033ae174dbeda484681e024f2ece7548, type: 3}
 --- !u!58 &4738559640936902555
 CircleCollider2D:
   m_ObjectHideFlags: 0

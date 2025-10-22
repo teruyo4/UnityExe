@@ -8,11 +8,15 @@ public class GameManager : MonoBehaviour
     public rabbit rab, rabInst;
     public alice aliceObj, aliceInst;
     public ChaseScene chaseScene;
+    public Bgm bgm;
     public AudioClip[,] audioC = new AudioClip[9, 9];
+    public float SuperTime;
+    public float GoodTime;
+    public float NormalTime;
     
     private FormulaObj formulaInst;
     private List<FormulaObj> formulaList = new List<FormulaObj>();
-    private float startTime;
+    private float startTime, spawnTime;
     
     private float intervalTime = 5.0f; // 次に出す問題までの期間
     private float nextInterval;
@@ -33,9 +37,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameStart() {
+        bgm.StartMusic();
         kb.SpawnKeyboard();
         chaseScene.StartChase();
         SpawnFObj();
+        startTime = Time.time;
         formulaInst.changeCur();
         SpawnFObj();
         phase = 1;
@@ -59,7 +65,7 @@ public class GameManager : MonoBehaviour
     
     void FixedUpdate() {
         if (phase == 1) {
-            if (Time.time - startTime > nextInterval) {
+            if (Time.time - spawnTime > nextInterval) {
                 SpawnFObj();
             }
         }
@@ -70,7 +76,7 @@ public class GameManager : MonoBehaviour
         formulaInst.Setup();
         formulaList.Add(formulaInst);
         nextInterval = intervalTime;
-        startTime = Time.time;
+        spawnTime = Time.time;
     }
 
     void DestroyFObj() {
@@ -103,15 +109,16 @@ public class GameManager : MonoBehaviour
         // 普通: １秒間、速度は0にする。
         // 遅し: 速度は変わらない。
         var diff = Time.time - startTime;
-        if (diff < 1.5f) {
+        if (diff < SuperTime) {
             chaseScene.ExecuteOperation(Grades.Super);
-        } else if (diff < 2.0f) {
+        } else if (diff < GoodTime) {
             chaseScene.ExecuteOperation(Grades.Good);
-        } else if (diff < 2.5f) {
+        } else if (diff < NormalTime) {
             chaseScene.ExecuteOperation(Grades.Normal);
         } else {
             chaseScene.ExecuteOperation(Grades.Bad);
         }
+        startTime = Time.time;
     }
 
 }
