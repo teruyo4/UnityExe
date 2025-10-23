@@ -2,13 +2,19 @@ using UnityEngine;
 
 public class Bgm : MonoBehaviour {
 
-    AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip mainBgm;
+	[SerializeField] private AudioClip jingle1;
     
-    void Awake() {
-        audioSource = GetComponent<AudioSource>();
+    public void StartMusic() {
+        audioSource.PlayOneShot(jingle1);
     }
 
-    public void StartMusic() {
-        audioSource.Play();
+    public void BGM() {
+        audioSource.PlayOneShot(mainBgm);
+    }
+
+    public void Pitch(float bpm) {
+        audioSource.pitch = bpm / 120f;
     }
 }

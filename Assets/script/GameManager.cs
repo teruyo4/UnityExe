@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,7 +10,7 @@ public class GameManager : MonoBehaviour
     public rabbit rab, rabInst;
     public alice aliceObj, aliceInst;
     public ChaseScene chaseScene;
-    public Bgm bgm;
+    public CutinScene cutinScene;
     public AudioClip[,] audioC = new AudioClip[9, 9];
     public float SuperTime;
     public float GoodTime;
@@ -36,10 +38,14 @@ public class GameManager : MonoBehaviour
         phase = 0;
     }
 
-    public void GameStart() {
-        bgm.StartMusic();
+    public async void GameStart() {
+        var cts = new CancellationTokenSource();
         kb.SpawnKeyboard();
+        cutinScene.StartScene();
+        chaseScene.PreStartChase();
+        await UniTask.Delay(3000, cancellationToken: cts.Token);
         chaseScene.StartChase();
+        await UniTask.Delay(1000, cancellationToken: cts.Token);
         SpawnFObj();
         startTime = Time.time;
         formulaInst.changeCur();

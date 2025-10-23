@@ -7,15 +7,19 @@ public class rabbit : MonoBehaviour
     public GameObject goodKotodama;
     public GameObject okKotodama;
     public GameObject badKotodama;
+	public bool opeFlag;
     
     private float speedX; // 移動速度
 
-    void Start() {
-        ChangeBehaviour(0f, 0f);
+    void Start()
+    {
+        opeFlag = false;
     }
 
-    void FixedUpdate() {
-        transform.Translate(speedX, 0f, 0f);
+    void FixedUpdate()
+	{
+		if (opeFlag)
+            transform.Translate(speedX, 0f, 0f);
     }
 
     // 挙動を変える
@@ -37,18 +41,24 @@ public class rabbit : MonoBehaviour
             case Grades.Normal:
                 kotodama = okKotodama;
                 break;
-            default:
+            case Grades.Bad:
                 kotodama = badKotodama;
                 break;
+            default:
+                return;
         }
         var inst = Instantiate(kotodama, transform);
+        var renderer = inst.GetComponent<SpriteRenderer>();
         inst.transform.localPosition = new Vector3(0.4f, 0f, 0f);
-        inst.transform.DOLocalMove(new Vector3(0f, 0.5f, 0f), 1.0f)
+        DOTween.Sequence()
+        .Append(
+            inst.transform.DOLocalMove(new Vector3(0f, 0.5f, 0f), 3.0f)
             .SetRelative(true)
             .SetLink(inst)
             .OnComplete(() => {
                 Destroy(inst);
-            });
+            }))
+            .Join(renderer.DOFade(0.0f, 3.0f));
                                             }
 
     public void remove() {

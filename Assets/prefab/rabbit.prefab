@@ -131,6 +131,7 @@ MonoBehaviour:
   goodKotodama: {fileID: 7559896429752545881, guid: 30068e29a3c92cf0fb909a84648540b4, type: 3}
   okKotodama: {fileID: 6028703402401332342, guid: a8612ab73eea41e9cb326facbc93b183, type: 3}
   badKotodama: {fileID: 1713935395320715734, guid: 033ae174dbeda484681e024f2ece7548, type: 3}
+  opeFlag: 0
 --- !u!58 &4738559640936902555
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -165,5 +166,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.53333336}
+  m_Offset: {x: 0, y: 0}
   m_Radius: 0.2
