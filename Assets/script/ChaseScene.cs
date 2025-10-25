@@ -52,14 +52,15 @@ public class ChaseScene : MonoBehaviour
 
     public void PreStartChase()
     {
-        Time.timeScale = 1.0f;
+        cameraPos = 0;
+        transform.localScale = new Vector3(csList[cameraPos].sceneScale, csList[cameraPos].sceneScale, 0);
         aliceInst = Instantiate(aliceObj, transform);
         aliceInst.transform.localPosition = new Vector3(-staPos - 6.0f, 0f, 0f);
         aliceInst.ChangeBehaviour(0f, 1.0f);
         rabInst = Instantiate(rabObj, transform);
         rabInst.transform.localPosition = new Vector3(staPos - 6.0f, -0.1f, 0f);
         rabInst.ChangeBehaviour(0f, 1.0f);
-        bgm.StartMusic(); bgm.Pitch(180);
+        bgm.StopBGM(); bgm.StartMusic(); bgm.Pitch(180);
         DOTween.Sequence()
             .Append(
                 aliceInst.transform.DOLocalMove(new Vector3(-staPos, 0f, 0f), 4.0f))
@@ -128,14 +129,16 @@ public class ChaseScene : MonoBehaviour
         }
     }
 
-    public void BeCaught()
+    public async void BeCaught()
     {
-        //        aliceInst.GetComponent<Animator>().speed = 0f;
-        //        rabInst.ChangeBehaviour(0f, 0f);
+        cts = new();
         ClearCharacter();
         aarInst = Instantiate(aar, transform);
         aarInst.transform.localPosition = new Vector3(0f, 0f, 0f);
+        bgm.StopBGM();
+        await UniTask.Delay(1000, cancellationToken: cts.Token);
         Time.timeScale = 0f;
+        bgm.GameOverMusic();
     }
 
     public void ClearCharacter()

@@ -53,10 +53,17 @@ public class GameManager : MonoBehaviour
         phase = 1;
     }
     
-    public void GameReStart() {
+    public async void GameReStart() {
+        var cts = new CancellationTokenSource();
         chaseScene.ClearCharacter();
+        cutinScene.StartScene();
+        chaseScene.PreStartChase();
+        Time.timeScale = 1.0f;
+        await UniTask.Delay(3000, cancellationToken: cts.Token);
         chaseScene.StartChase();
+        await UniTask.Delay(1000, cancellationToken: cts.Token);
         SpawnFObj();
+        startTime = Time.time;
         formulaInst.changeCur();
         SpawnFObj();
         phase = 1;
@@ -64,9 +71,9 @@ public class GameManager : MonoBehaviour
 
     public void becaught() {
         phase = 0;
-        chaseScene.BeCaught();
         DestroyFObj();
         kb.SpawnFinished();
+        chaseScene.BeCaught();
     }
     
     void FixedUpdate() {

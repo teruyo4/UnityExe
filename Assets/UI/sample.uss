@@ -6,7 +6,7 @@
 }
 
 .button {
-    background-color: rgba(233, 21, 21, 0.28);
+    background-color: rgba(233, 21, 21, 0.7);
     width: 28%;
     left: auto;
     padding-left: 0%;
@@ -40,7 +40,7 @@
 }
 
 .button:hover {
-    background-color: rgba(21, 67, 233, 0.28);
+    background-color: rgba(21, 67, 233, 0.65);
     left: auto;
     padding-left: 0%;
     padding-right: 0%;
@@ -62,7 +62,7 @@
 }
 
 .button:active {
-    background-color: rgba(21, 67, 233, 0.28);
+    background-color: rgba(77, 77, 77, 0.82);
     width: 28%;
     left: auto;
     padding-left: 0%;
@@ -70,10 +70,10 @@
     margin-left: 2%;
     margin-right: 2%;
     position: relative;
-    border-left-color: rgb(30, 54, 217);
-    border-right-color: rgb(30, 50, 217);
-    border-top-color: rgb(13, 39, 142);
-    border-bottom-color: rgb(105, 116, 221);
+    border-left-color: rgb(77, 77, 77);
+    border-right-color: rgb(51, 51, 51);
+    border-top-color: rgb(102, 102, 102);
+    border-bottom-color: rgb(26, 26, 26);
     --margins-size: 1.5%;
     margin-bottom: var(--margins-size);
     margin-top: var(--margins-size);
