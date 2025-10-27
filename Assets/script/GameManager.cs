@@ -24,18 +24,32 @@ public class GameManager : MonoBehaviour
     private float nextInterval;
     private int phase = 0;
 
+    private IState _curState; // 現在のシーンフェーズを表す（タイトル、メイン、ゲームオーバー）
+
     void Awake() {
-        // audio clip の読み込み
+        LoadAudioClip();
+    }
+
+    void Start() {
+        ChangeState(new TitleState(this));
+//        kb.SpawnStartLabel();  // タイトルとスタートボタンを表示
+        phase = 0;
+    }
+
+    // ゲームシーン（タイトル、メイン、ゲームオーバー）の遷移を行うメソッド
+    public void ChangeState(IState newState) {
+        _curState?.Exit();    // 現在の状態がNULLでなければ、現状態の終了処理を実行する。
+        _curState = newState; // 新状態に遷移。
+        _curState.Enter();    // 新状態の開始処理を実行。
+    }
+
+    void LoadAudioClip() {
+        // 9x9 audio clip の読み込み
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
                 audioC[x, y] = Resources.Load<AudioClip>($"voice/{x+1}x{y+1}");
             }
         }
-    }
-
-    void Start() {
-        kb.SpawnStartLabel();  // タイトルとスタートボタンを表示
-        phase = 0;
     }
 
     public async void GameStart() {

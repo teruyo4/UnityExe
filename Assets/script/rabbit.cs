@@ -8,12 +8,19 @@ public class rabbit : MonoBehaviour
     public GameObject okKotodama;
     public GameObject badKotodama;
 	public bool opeFlag;
-    
-    private float speedX; // 移動速度
+
+    private AudioSource audioS;
+	private float speedX; // 移動速度
+    private AudioClip[] rabVoice = new AudioClip[4];
 
     void Start()
     {
         opeFlag = false;
+        audioS = GetComponent<AudioSource>();
+		rabVoice[0] = Resources.Load<AudioClip>("voice/super");
+		rabVoice[1] = Resources.Load<AudioClip>("voice/good");
+		rabVoice[2] = Resources.Load<AudioClip>("voice/normal");
+		rabVoice[3] = Resources.Load<AudioClip>("voice/bad");
     }
 
     void FixedUpdate()
@@ -34,15 +41,19 @@ public class rabbit : MonoBehaviour
         switch (grade) {
             case Grades.Super:
                 kotodama = superKotodama;
+				audioS.clip = rabVoice[0];
                 break;
             case Grades.Good:
                 kotodama = goodKotodama;
+				audioS.clip = rabVoice[1];
                 break;
             case Grades.Normal:
                 kotodama = okKotodama;
+				audioS.clip = rabVoice[2];
                 break;
             case Grades.Bad:
                 kotodama = badKotodama;
+				audioS.clip = rabVoice[3];
                 break;
             default:
                 return;
@@ -50,6 +61,7 @@ public class rabbit : MonoBehaviour
         var inst = Instantiate(kotodama, transform);
         var renderer = inst.GetComponent<SpriteRenderer>();
         inst.transform.localPosition = new Vector3(0.4f, 0f, 0f);
+		audioS.Play();
         DOTween.Sequence()
         .Append(
             inst.transform.DOLocalMove(new Vector3(0f, 0.5f, 0f), 3.0f)
