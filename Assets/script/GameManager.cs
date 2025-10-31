@@ -12,17 +12,15 @@ public class GameManager : MonoBehaviour
     public ChaseScene chaseScene;
     public CutinScene cutinScene;
     public AudioClip[,] audioC = new AudioClip[9, 9];
-    public float SuperTime;
-    public float GoodTime;
-    public float NormalTime;
+    public List<FormulaObj> formulaList = new List<FormulaObj>();
+
+    public float SuperTime, GoodTime, NormalTime;
     
     private FormulaObj formulaInst;
-    private List<FormulaObj> formulaList = new List<FormulaObj>();
-    private float startTime, spawnTime;
+    public float startTime, spawnTime;
     
-    private float intervalTime = 5.0f; // 次に出す問題までの期間
-    private float nextInterval;
-    private int phase = 0;
+    public float intervalTime = 5.0f; // 次に出す問題までの期間
+    public float nextInterval;
 
     private IState _curState; // 現在のシーンフェーズを表す（タイトル、メイン、ゲームオーバー）
 
@@ -32,19 +30,26 @@ public class GameManager : MonoBehaviour
 
     void Start() {
         ChangeState(new TitleState(this));
-//        kb.SpawnStartLabel();  // タイトルとスタートボタンを表示
-        phase = 0;
     }
 
-    // ゲームシーン（タイトル、メイン、ゲームオーバー）の遷移を行うメソッド
-    public void ChangeState(IState newState) {
+    void FixedUpdate() {
+        _curState?.Tick();
+    }
+    
+    // ゲームフェーズ（タイトル、メイン、ゲームオーバー）の遷移を行うメソッド
+    public  void ChangeState(IState newState) {
         _curState?.Exit();    // 現在の状態がNULLでなければ、現状態の終了処理を実行する。
         _curState = newState; // 新状態に遷移。
         _curState.Enter();    // 新状態の開始処理を実行。
     }
 
+    public IState GameAgent() {
+        return _curState;
+    }
+    
     void LoadAudioClip() {
         // 9x9 audio clip の読み込み
+        Debug.Log("load audio clip");
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
                 audioC[x, y] = Resources.Load<AudioClip>($"voice/{x+1}x{y+1}");
@@ -52,21 +57,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public async void GameStart() {
-        var cts = new CancellationTokenSource();
-        kb.SpawnKeyboard();
-        cutinScene.StartScene();
-        chaseScene.PreStartChase();
-        await UniTask.Delay(3000, cancellationToken: cts.Token);
-        chaseScene.StartChase();
-        await UniTask.Delay(1000, cancellationToken: cts.Token);
-        SpawnFObj();
-        startTime = Time.time;
-        formulaInst.changeCur();
-        SpawnFObj();
-        phase = 1;
-    }
-    
     public async void GameReStart() {
         var cts = new CancellationTokenSource();
         chaseScene.ClearCharacter();
@@ -80,25 +70,9 @@ public class GameManager : MonoBehaviour
         startTime = Time.time;
         formulaInst.changeCur();
         SpawnFObj();
-        phase = 1;
-    }
-
-    public void becaught() {
-        phase = 0;
-        DestroyFObj();
-        kb.SpawnFinished();
-        chaseScene.BeCaught();
     }
     
-    void FixedUpdate() {
-        if (phase == 1) {
-            if (Time.time - spawnTime > nextInterval) {
-                SpawnFObj();
-            }
-        }
-    }
-    
-    void SpawnFObj() {
+    public void SpawnFObj() {
         formulaInst = Instantiate(formulaObj);
         formulaInst.Setup();
         formulaList.Add(formulaInst);
@@ -106,46 +80,15 @@ public class GameManager : MonoBehaviour
         spawnTime = Time.time;
     }
 
-    void DestroyFObj() {
+    public void DestroyFObj() {
         foreach (var obj in formulaList) {
             obj.FinishFormula();
         }
         formulaList.Clear();
     }
 
-    // UIからの入力を受付け式Objに送る。正解だった場合Objの交代を指示する。
-    // UIに、不正解/１桁正解/正解を分けて音を出させるために、返り値を分ける。
-    public int InputNumber(int n) {
-        var ret = formulaList[0].InputNumber(n);
-        if (ret == 2) {
-            CorrectAnswer(formulaList[0]);
-        }
-        return ret;
-    }
-    
-    private void CorrectAnswer(FormulaObj fo) {
-        // 正解なら式Objリストから現状の式Objを外す。
-        formulaList.Remove(fo);
-        formulaList[0].changeCur();
-        if (formulaList.Count == 1) {
-            nextInterval = 0; // すぐ次の問題を出すためにインターバルなくす。
-        }
-        // 回答までの時間でラビットの動きを変化させる。
-        // 超速: １秒間、速度を+2で動かす。アニメ速度増し増し
-        // 速し: １秒間、速度を+1で動かす。アニメ速度増し。
-        // 普通: １秒間、速度は0にする。
-        // 遅し: 速度は変わらない。
-        var diff = Time.time - startTime;
-        if (diff < SuperTime) {
-            chaseScene.ExecuteOperation(Grades.Super);
-        } else if (diff < GoodTime) {
-            chaseScene.ExecuteOperation(Grades.Good);
-        } else if (diff < NormalTime) {
-            chaseScene.ExecuteOperation(Grades.Normal);
-        } else {
-            chaseScene.ExecuteOperation(Grades.Bad);
-        }
-        startTime = Time.time;
+    public void changeCur() {
+        formulaInst.changeCur();
     }
 
 }

@@ -7,19 +7,25 @@ public class Bgm : MonoBehaviour {
 	[SerializeField] private AudioClip jingle1;
 	[SerializeField] private AudioClip overBgm;
     
-    public void StartMusic() {
+    public void JingleMusic(float pitch) {
+        StopAudio();
+        Pitch(pitch);
         audioSource.PlayOneShot(jingle1);
     }
 
-    public void BGM() {
+    public void MainMusic(float pitch) {
+        StopAudio();
+        Pitch(pitch);
         audioSource.PlayOneShot(mainBgm);
     }
 
-    public void StopBGM() {
+    public void StopAudio() {
         audioSource.Stop();
     }
 
-    public void GameOverMusic() {
+    public void GameOverMusic(float pitch) {
+        StopAudio();
+        Pitch(pitch);
         audioSource.PlayOneShot(overBgm);
     }
 

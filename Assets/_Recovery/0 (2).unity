@@ -498,13 +498,6 @@ MonoBehaviour:
   chaseScene: {fileID: 33166930}
   cutinScene: {fileID: 434490669}
   formulaList: []
-  SuperTime: 1.5
-  GoodTime: 2
-  NormalTime: 3
-  startTime: 0
-  spawnTime: 0
-  intervalTime: 5
-  nextInterval: 0
 --- !u!4 &465054106
 Transform:
   m_ObjectHideFlags: 0

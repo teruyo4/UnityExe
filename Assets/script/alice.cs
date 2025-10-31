@@ -4,19 +4,14 @@ public class alice : MonoBehaviour {
     public bool opeFlag;
 
     private float speedX; // 移動速度
-    private GameManager gm;
 
-    void Awake() {
-        gm = (GameObject.FindWithTag("gamemanager")).GetComponent<GameManager>();
-    }
-    
     void Start() {
         opeFlag = false;
     }
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "rabbit") {
-            gm.becaught();
+            transform.parent.GetComponent<ChaseScene>().BeCaught();
         }
     }
 

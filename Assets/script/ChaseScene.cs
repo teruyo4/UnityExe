@@ -33,6 +33,7 @@ public class ChaseScene : MonoBehaviour {
     public alice aliceObj, aliceInst;
     public AliceAndRabbit aar, aarInst;
     public Bgm bgm;
+    public GameManager gm;
     
     private List<Operation> opeList;
     private List<CameraSize> csList;
@@ -50,15 +51,24 @@ public class ChaseScene : MonoBehaviour {
     }
 
     public void PreStartChase() {
+        // 追跡エリアの拡大率セット。遠景からの開始とする。
         cameraPos = 0;
         transform.localScale = new Vector3(csList[cameraPos].sceneScale, csList[cameraPos].sceneScale, 0);
+
+        // 追いかけキャラ実体化とアニメーションセット
         aliceInst = Instantiate(aliceObj, transform);
         aliceInst.transform.localPosition = new Vector3(-staPos - 6.0f, 0f, 0f);
         aliceInst.ChangeBehaviour(0f, 1.0f);
+
+        // 逃げるキャラ実体化とアニメーションセット
         rabInst = Instantiate(rabObj, transform);
         rabInst.transform.localPosition = new Vector3(staPos - 6.0f, -0.1f, 0f);
         rabInst.ChangeBehaviour(0f, 1.0f);
-        bgm.StopBGM(); bgm.StartMusic(); bgm.Pitch(180);
+        
+        // スタートジングル音出し
+        bgm.JingleMusic(180); 
+
+        // キャラクターのスタート位置への移動
         DOTween.Sequence()
            .Append(aliceInst.transform.DOLocalMove(new Vector3(-staPos, 0f, 0f), 4.0f))
            .Join(rabInst.transform.DOLocalMove(new Vector3(staPos, 0f, 0f), 4.0f));
@@ -68,7 +78,7 @@ public class ChaseScene : MonoBehaviour {
         ExecuteOperation(Grades.None);
         aliceInst.opeFlag = true;
         rabInst.opeFlag = true;
-        bgm.BGM(); bgm.Pitch(csList[cameraPos].bpm);
+        bgm.MainMusic(csList[cameraPos].bpm);
     }
 
     // 引数の指定に合わせて動作リストを作成する。
@@ -119,15 +129,20 @@ public class ChaseScene : MonoBehaviour {
         }
     }
 
-    public async void BeCaught() {
+    public void BeCaught() {
+        var gameAgent = gm.GameAgent() as PlayingState;
+        gameAgent.BeCaught();
+    }
+
+    public async void GameOver() {
         cts = new();
         ClearCharacter();
         aarInst = Instantiate(aar, transform);
         aarInst.transform.localPosition = new Vector3(0f, 0f, 0f);
-        bgm.StopBGM();
+        bgm.StopAudio();
         await UniTask.Delay(1000, cancellationToken: cts.Token);
         Time.timeScale = 0f;
-        bgm.GameOverMusic();
+        bgm.GameOverMusic(120f);
     }
 
     public void ClearCharacter() {

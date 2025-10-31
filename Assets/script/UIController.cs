@@ -17,12 +17,12 @@ public class UIController : MonoBehaviour
     
     public void SpawnStartLabel() {
         var sl = Instantiate(startLabel);
-        _uiDocument = sl.GetComponent<UIDocument>();
 
+        _uiDocument = sl.GetComponent<UIDocument>();
         var btn = _uiDocument.rootVisualElement.Q<Button>($"startbutton");
         btn.clickable.clicked += () => {
             Destroy(sl);
-            gm.GameStart();
+            gm.ChangeState(new JingleState(gm));
         };
     }
         
@@ -54,15 +54,19 @@ public class UIController : MonoBehaviour
     }
 
     void InputNumberLine(int num) {
-        switch (gm.InputNumber(num)) {
-            case 0:
-                break;
-            case 1:
-                GetComponent<AudioSource>().Play();
-                break;
-            case 2:
-                GetComponent<AudioSource>().Play();
-                break;
+        Debug.Log($"agentname = {gm.GameAgent()}");
+        if (gm.GameAgent().GetType() == typeof(PlayingState)) {
+            var gameAgent = gm.GameAgent() as PlayingState;
+            switch (gameAgent.InputNumber(num)) {
+                case 0:
+                    break;
+                case 1:
+                    GetComponent<AudioSource>().Play();
+                    break;
+                case 2:
+                    GetComponent<AudioSource>().Play();
+                    break;
+            }
         }
     }
 }
