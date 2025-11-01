@@ -6,9 +6,6 @@ using UnityEngine;
 // ゲームオーバーのフェーズエージェント定義
 public class GameOverState: IState
 {
-    public UIController kb;
-    public ChaseScene chaseScene;
-
     private GameManager _gameManager;
 
     public GameOverState(GameManager gameManager) {
@@ -18,8 +15,8 @@ public class GameOverState: IState
     public void Enter() {
         Debug.Log("Enter GameOver.");
         _gameManager.DestroyFObj();
-        kb.SpawnFinished();
-//        chaseScene.BeCaught();
+        _gameManager.chaseScene.GameOver();
+        _gameManager.kb.SpawnFinished();
     }
 
     public void Tick() {
@@ -27,6 +24,7 @@ public class GameOverState: IState
 
     public void Exit() {
         Debug.Log("Exit GameOver.");
+        _gameManager.chaseScene.ClearCharacter();
     }
 }
 

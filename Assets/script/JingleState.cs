@@ -18,6 +18,7 @@ public class JingleState: IState
         _gameManager.kb.SpawnKeyboard();
         _gameManager.cutinScene.StartScene();
         _gameManager.chaseScene.PreStartChase();
+        Time.timeScale = 1.0f;
         await UniTask.Delay(3000, cancellationToken: cts.Token);
         _gameManager.chaseScene.StartChase();
         await UniTask.Delay(1000, cancellationToken: cts.Token);
@@ -32,9 +33,5 @@ public class JingleState: IState
 
     public void Exit() {
         Debug.Log("Exit Jingle.");
-    }
-
-    public int InputNumber(int n) {
-        return 0;
     }
 }

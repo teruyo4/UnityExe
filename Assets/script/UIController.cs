@@ -33,7 +33,7 @@ public class UIController : MonoBehaviour
         var btn = _uiDocument.rootVisualElement.Q<Button>($"retrybutton");
         btn.clickable.clicked += () => {
             Destroy(fl);
-            gm.GameReStart();
+            gm.ChangeState(new JingleState(gm));
         };
     }
         

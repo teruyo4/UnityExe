@@ -171,7 +171,7 @@ MonoBehaviour:
   aar: {fileID: -4617458268249766225, guid: 2e3d2d04d402675ddbb5d7d622366203, type: 3}
   aarInst: {fileID: 0}
   bgm: {fileID: 598587049}
-  gm: {fileID: 0}
+  gm: {fileID: 465054105}
 --- !u!1 &428081379
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,21 +57,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public async void GameReStart() {
-        var cts = new CancellationTokenSource();
-        chaseScene.ClearCharacter();
-        cutinScene.StartScene();
-        chaseScene.PreStartChase();
-        Time.timeScale = 1.0f;
-        await UniTask.Delay(3000, cancellationToken: cts.Token);
-        chaseScene.StartChase();
-        await UniTask.Delay(1000, cancellationToken: cts.Token);
-        SpawnFObj();
-        startTime = Time.time;
-        formulaInst.changeCur();
-        SpawnFObj();
-    }
-    
     public void SpawnFObj() {
         formulaInst = Instantiate(formulaObj);
         formulaInst.Setup();

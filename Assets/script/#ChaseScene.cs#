@@ -50,9 +50,10 @@ public class ChaseScene : MonoBehaviour {
         };
     }
 
+    // ゲーム開始前のジングル動作
     public void PreStartChase() {
         // 追跡エリアの拡大率セット。遠景からの開始とする。
-        cameraPos = 0;
+        cameraPos = 0; // カメラポジション０は最大遠景
         transform.localScale = new Vector3(csList[cameraPos].sceneScale, csList[cameraPos].sceneScale, 0);
 
         // 追いかけキャラ実体化とアニメーションセット
@@ -74,6 +75,7 @@ public class ChaseScene : MonoBehaviour {
            .Join(rabInst.transform.DOLocalMove(new Vector3(staPos, 0f, 0f), 4.0f));
     }
 
+    // ゲームスタート。追いかけっこ開始。
     public void StartChase() {
         ExecuteOperation(Grades.None);
         aliceInst.opeFlag = true;
@@ -135,6 +137,7 @@ public class ChaseScene : MonoBehaviour {
         gameAgent.BeCaught();
     }
 
+    // ゲームオーバーシーケンス。
     public async void GameOver() {
         var _cts = new CancellationTokenSource();
         ClearCharacter();
@@ -165,7 +168,7 @@ public class ChaseScene : MonoBehaviour {
             ChangeSituation(-1);
     }
 
-    // 状況変更（1:UP, 2:DOWN）
+    // カメラのズームイン、ズームアウト。BGMのピッチ変更。
     void ChangeSituation(int status) {
         cameraPos += status;
         

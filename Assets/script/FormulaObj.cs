@@ -31,6 +31,8 @@ public class FormulaObj : MonoBehaviour {
         numAnswer = lhs * rhs;
     }
 
+    // 九九問題のセットアップ。
+    // 問題（九九）を決定し、テキストを生成、答えを準備し、初期の動きを付ける。
     public void Setup() {
         // 初期位置指定
         transform.position = new Vector3(0f, 4.50f, 0f);
