@@ -6,26 +6,23 @@ using UnityEngine;
 // スタートジングルのフェーズエージェント定義
 public class JingleState: IState
 {
-    private GameManager _gameManager;
+    private GameManager _gm;
 
     public JingleState(GameManager gameManager) {
-        _gameManager = gameManager;
+        _gm = gameManager;
     }
 
     public async void Enter() {
         Debug.Log("Enter Jingle.");
         var cts = new CancellationTokenSource();
-        _gameManager.kb.SpawnKeyboard();
-        _gameManager.cutinScene.StartScene();
-        _gameManager.chaseScene.PreStartChase();
+        _gm.kb.SpawnKeyboard();
+        _gm.cutinScene.StartScene();
+        _gm.chaseScene.PreStartChase();
         Time.timeScale = 1.0f;
         await UniTask.Delay(3000, cancellationToken: cts.Token);
-        _gameManager.chaseScene.StartChase();
+        _gm.chaseScene.StartChase();
         await UniTask.Delay(1000, cancellationToken: cts.Token);
-        _gameManager.SpawnFObj();
-        _gameManager.changeCur();
-        _gameManager.SpawnFObj();
-        _gameManager.ChangeState(new PlayingState(_gameManager));
+        _gm.ChangeState(new PlayingState(_gm));
     }
 
     public void Tick() {

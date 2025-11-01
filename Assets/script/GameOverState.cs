@@ -6,17 +6,17 @@ using UnityEngine;
 // ゲームオーバーのフェーズエージェント定義
 public class GameOverState: IState
 {
-    private GameManager _gameManager;
+    private GameManager _gm;
 
     public GameOverState(GameManager gameManager) {
-        _gameManager = gameManager;
+        _gm = gameManager;
     }
 
     public void Enter() {
         Debug.Log("Enter GameOver.");
-        _gameManager.DestroyFObj();
-        _gameManager.chaseScene.GameOver();
-        _gameManager.kb.SpawnFinished();
+        _gm.DestroyFObj();
+        _gm.chaseScene.GameOver();
+        _gm.kb.SpawnFinished();
     }
 
     public void Tick() {
@@ -24,7 +24,7 @@ public class GameOverState: IState
 
     public void Exit() {
         Debug.Log("Exit GameOver.");
-        _gameManager.chaseScene.ClearCharacter();
+        _gm.chaseScene.ClearCharacter();
     }
 }
 

@@ -5,15 +5,15 @@ using UnityEngine;
 // 状態インターフェーズの定義（タイトルフェーズ）
 public class TitleState: IState
 {
-    private GameManager _gameManager;
+    private GameManager _gm;
 
     public TitleState(GameManager gameManager) {
-        _gameManager = gameManager;
+        _gm = gameManager;
     }
 
     public void Enter() {
         Debug.Log("Enter Title.");
-        _gameManager.kb.SpawnStartLabel();  // タイトル表示とスタートボタン割当
+        _gm.kb.SpawnStartLabel();  // タイトル表示とスタートボタン割当
     }
 
     public void Tick() {
