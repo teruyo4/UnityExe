@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Top" style="flex-grow: 1;">
+        <ui:VisualElement name="BackPanel" style="flex-grow: initial; top: 20%; left: 10%; width: 80%; height: 50%; background-color: rgb(96, 108, 166);">
+            <ui:VisualElement name="Panel" style="flex-grow: 1; top: auto; left: auto; width: auto; height: auto; background-image: resource(&apos;images/Copilot_20251103_230702 1&apos;); background-color: rgba(67, 111, 180, 0); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-slice-scale: 1px; flex-shrink: 1; background-size: 100% 100%;">
+                <ui:RadioButtonGroup label="Level Select" style="top: 10%; left: 13%; flex-grow: initial; width: 74%; height: 80%; -unity-text-align: upper-center; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/%E5%92%8C%E9%A2%A8%E3%81%BD%E3%81%A3%E3%81%B7.ttf?fileID=12800000&amp;guid=5eb6f64963c6192bbbdb07788a12c0a7&amp;type=3#和風ぽっぷ&quot;); font-size: 50px; color: rgb(43, 53, 202); flex-direction: column;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

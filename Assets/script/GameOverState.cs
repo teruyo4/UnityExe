@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameOverState: IState
 {
     private GameManager _gm;
-
+//test
     public GameOverState(GameManager gameManager) {
         _gm = gameManager;
     }
