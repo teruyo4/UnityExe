@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     }
 
     void Start() {
-        ChangeState(new TitleState(this));
+        ChangeState(new JingleState(this));
     }
 
     void FixedUpdate() {

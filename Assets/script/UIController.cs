@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class UIController : MonoBehaviour
@@ -33,7 +34,8 @@ public class UIController : MonoBehaviour
         var btn = _uiDocument.rootVisualElement.Q<Button>($"retrybutton");
         btn.clickable.clicked += () => {
             Destroy(fl);
-            gm.ChangeState(new JingleState(gm));
+            SceneManager.LoadScene("LevelSelect");
+            //            gm.ChangeState(new JingleState(gm));
         };
     }
         

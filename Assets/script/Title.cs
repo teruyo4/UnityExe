@@ -14,7 +14,7 @@ public class Title : MonoBehaviour {
         var btn = _uiDocument.rootVisualElement.Q<Button>("TapToStart");
         btn.clickable.clicked += () => {
             Destroy(_uiDocument);
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("LevelSelect");
         };
     }
 }
