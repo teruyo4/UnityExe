@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public CutinScene cutinScene;
     public AudioClip[,] audioC = new AudioClip[9, 9];
     public List<FormulaObj> formulaList = new List<FormulaObj>();
+    public ProgressRoad progressRoad;
 
     public float SuperTime, GoodTime, NormalTime;
     
@@ -76,4 +77,7 @@ public class GameManager : MonoBehaviour
         formulaInst.changeCur();
     }
 
+    public void SetProgressRoad() {
+        progressRoad.SetProgressRoad();
+    }
 }

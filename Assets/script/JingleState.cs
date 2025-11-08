@@ -18,6 +18,7 @@ public class JingleState: IState
         _gm.kb.SpawnKeyboard();
         _gm.cutinScene.StartScene();
         _gm.chaseScene.PreStartChase();
+        _gm.SetProgressRoad();
         Time.timeScale = 1.0f;
         await UniTask.Delay(3000, cancellationToken: cts.Token);
         _gm.chaseScene.StartChase();
