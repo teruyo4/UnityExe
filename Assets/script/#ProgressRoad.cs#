@@ -17,7 +17,7 @@ public class ProgressRoad : MonoBehaviour {
     private Rigidbody2D rbRabbit;
     private Animator rbAnim;
 
-    public float mileStone;
+    private float mileStone;
 
     private static float goalMeter = 1000f;
 

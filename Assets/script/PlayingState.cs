@@ -35,6 +35,10 @@ public class PlayingState : IState
         _gm.ChangeState(new GameOverState(_gm));
     }
 
+    public void Goal() {
+        _gm.ChangeState(new GameOverState(_gm));
+    }
+
     // UIからの入力を受付け式Objに送る。正解だった場合Objの交代を指示する。
     // UIに、不正解/１桁正解/正解を分けて音を出させるために、返り値を分ける。
     public int InputNumber(int n) {

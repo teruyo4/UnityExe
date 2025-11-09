@@ -135,6 +135,11 @@ public class ChaseScene : MonoBehaviour {
         gameAgent.BeCaught();
     }
 
+    public void Goal() {
+        var gameAgent = gm.GameAgent() as PlayingState;
+        gameAgent.Goal();
+    }
+
     public async void GameOver() {
         var _cts = new CancellationTokenSource();
         ClearCharacter();
