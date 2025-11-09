@@ -1,1 +1,0 @@
-teruyo4@teruyo4-minipc.5785:1762602123

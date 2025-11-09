@@ -17,6 +17,7 @@ public class PlayingState : IState
         _gm.SpawnFObj();
         _gm.changeCur();
         _gm.SpawnFObj();
+        _gm.SetProgressRabbit();
         _gm.startTime = Time.time;
     }
 
