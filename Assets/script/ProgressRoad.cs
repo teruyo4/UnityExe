@@ -17,12 +17,12 @@ public class ProgressRoad : MonoBehaviour {
     private Rigidbody2D rbRabbit;
     private Animator rbAnim;
 
-    public float mileStone;
+    private float mileStone;
 
     private static float goalMeter = 1000f;
 
-    public float GetMileStone() {
-        return mileStone;
+    public float GetLeftMile() {
+        return goalMeter - mileStone;
     }
     
     public void SetProgressRoad() {

@@ -8,6 +8,7 @@ TagManager:
   - gamemanager
   - rabbit
   - chasescene
+  - progressroad
   layers:
   - Default
   - TransparentFX

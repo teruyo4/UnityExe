@@ -17,8 +17,9 @@ public class MileStoneImage : MonoBehaviour {
 
         Instantiate(pt1, transform);
         var pt2inst = Instantiate(pt2, transform);
-        pt2inst.GetComponent<TextMeshPro>().fontSize = 4;
-        pt2inst.GetComponent<TextMeshPro>().text = $"{progressRoad.GetMileStone()}m";
+        pt2inst.GetComponent<TextMeshPro>().fontSize = 6;
+        progressRoad = (GameObject.FindWithTag("progressroad")).GetComponent<ProgressRoad>();
+        pt2inst.GetComponent<TextMeshPro>().text = $" {progressRoad.GetLeftMile()}";
     }
 }
 

@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 389586081}
   m_Layer: 0
   m_Name: ProgressRoad
-  m_TagString: Untagged
+  m_TagString: progressroad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,7 +221,6 @@ MonoBehaviour:
   mileStoneImage: {fileID: 5715755359170780454, guid: 5634e6844a6eacfe6a55c4a8270e4a3a, type: 3}
   chaseScene: {fileID: 33166930}
   hole: {fileID: 3540591592390862757, guid: 0dca0114dc17962c79f91b25f2b2f8dc, type: 3}
-  mileStone: 0
 --- !u!1 &428081379
 GameObject:
   m_ObjectHideFlags: 0
