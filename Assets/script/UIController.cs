@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject sampleElement;
     [SerializeField] GameObject startLabel;
     [SerializeField] GameObject finished;
+    [SerializeField] GameObject clearDialog;
     [SerializeField] GameManager gm;
     
     private UIDocument _uiDocument;
@@ -36,6 +37,17 @@ public class UIController : MonoBehaviour
             Destroy(fl);
             SceneManager.LoadScene("LevelSelect");
             //            gm.ChangeState(new JingleState(gm));
+        };
+    }
+        
+    public void SpawnClearDialog() {
+        var fl = Instantiate(clearDialog);
+        _uiDocument = fl.GetComponent<UIDocument>();
+
+        var btn = _uiDocument.rootVisualElement.Q<Button>($"clearbutton");
+        btn.clickable.clicked += () => {
+            Destroy(fl);
+            SceneManager.LoadScene("LevelSelect");
         };
     }
         

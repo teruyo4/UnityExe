@@ -36,7 +36,7 @@ public class PlayingState : IState
     }
 
     public void Goal() {
-        _gm.ChangeState(new GameOverState(_gm));
+        _gm.ChangeState(new ClearState(_gm));
     }
 
     // UIからの入力を受付け式Objに送る。正解だった場合Objの交代を指示する。

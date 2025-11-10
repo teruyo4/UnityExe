@@ -11,15 +11,12 @@ public class ProgressRoad : MonoBehaviour {
     private ProgressBack progressBackInst;
     private ProgressRabbit progressRabbitInst;
 
-    private float progressMeter;
-    private float aliceMeter;
-
     private Rigidbody2D rbRabbit;
     private Animator rbAnim;
 
     private float mileStone;
 
-    private static float goalMeter = 1000f;
+    private static float goalMeter = 100f;
 
     public float GetLeftMile() {
         return goalMeter - mileStone;
@@ -27,13 +24,11 @@ public class ProgressRoad : MonoBehaviour {
     
     public void SetProgressRoad() {
         progressBackInst = Instantiate(progressBack, transform);
-        progressMeter = 0;
-        aliceMeter = 0;
     }
 
     public void SetProgressRabbit() {
         progressRabbitInst = Instantiate(progressRabbit, transform);
-        progressRabbitInst.transform.localPosition = new Vector3(progressMeter / 1000 * 4 - 2, 0f, 0f);
+        progressRabbitInst.transform.localPosition = new Vector3(-2f, 0f, 0f);
         rbRabbit = progressRabbitInst.GetComponent<Rigidbody2D>();
         rbRabbit.AddForce(new Vector2(0.1f, 0f), ForceMode2D.Impulse);
         rbAnim = progressRabbitInst.GetComponent<Animator>();
@@ -42,12 +37,17 @@ public class ProgressRoad : MonoBehaviour {
         mileStone = 100f;
     }
 
+    public void DelProgressRabbit() {
+        Debug.Log("DelprogressRabit");
+        Destroy(progressRabbitInst);
+        progressRabbitInst = null;
+    }
+
     void FixedUpdate() {
         if (progressRabbitInst != null && progressRabbitInst.progressMeter() >= mileStone) {
             if (mileStone >= goalMeter) {
                 Instantiate(hole, chaseScene.transform);
             } else {
-//                Instantiate(hole, chaseScene.transform);
                 var ms = Instantiate(mileStoneImage, chaseScene.transform);
             }
             mileStone += 100f;

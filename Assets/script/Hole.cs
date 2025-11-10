@@ -12,8 +12,9 @@ public class Hole : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        Debug.Log("Goal!");
         if (col.gameObject.tag == "rabbit") {
+            Debug.Log("Goal!");
+            transform.DOPause();
             transform.parent.GetComponent<ChaseScene>().Goal();
         }
     }

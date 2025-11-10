@@ -84,4 +84,8 @@ public class GameManager : MonoBehaviour
     public void SetProgressRabbit() {
         progressRoad.SetProgressRabbit();
     }
+
+    public void DelProgressRabbit() {
+        progressRoad.DelProgressRabbit();
+    }
 }

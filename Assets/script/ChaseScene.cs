@@ -34,6 +34,7 @@ public class ChaseScene : MonoBehaviour {
     public AliceAndRabbit aar, aarInst;
     public Bgm bgm;
     public GameManager gm;
+    public Background background;
     
     private List<Operation> opeList;
     private List<CameraSize> csList;
@@ -146,9 +147,19 @@ public class ChaseScene : MonoBehaviour {
         aarInst = Instantiate(aar, transform);
         aarInst.transform.localPosition = new Vector3(0f, 0f, 0f);
         bgm.StopAudio();
+        background.StopScroll();
         await UniTask.Delay(1000, cancellationToken: _cts.Token);
         bgm.GameOverMusic(120f);
-        Time.timeScale = 0f;
+    }
+
+    public async void Clear() {
+        var _cts = new CancellationTokenSource();
+        rabInst.opeFlag = false;
+        aliceInst.opeFlag = false;
+        bgm.StopAudio();
+        background.StopScroll();
+        rabInst.transform.DOLocalMoveX(1.0f, 1.0f);
+        await UniTask.Delay(2000, cancellationToken: _cts.Token);
     }
 
     public void ClearCharacter() {

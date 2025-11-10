@@ -101,5 +101,23 @@ namespace EasyParallax
 
             return rightmostSprite;
         }
+
+        public void PauseMovement()
+        {
+            for (var i = 0; i < poolSize; i++)
+            {
+                duplicatesPool[i].GetComponent<SpriteMovement>().speed = 0;
+            }
+        }
+
+        public void PlayMovement()
+        {
+            float sp = transform.GetComponent<SpriteMovement>().movementSpeedType.speed;
+            for (var i = 0; i < poolSize; i++)
+            {
+                duplicatesPool[i].GetComponent<SpriteMovement>().speed = sp;
+            }
+        }
+        
     }
 }

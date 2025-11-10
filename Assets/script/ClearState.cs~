@@ -1,0 +1,23 @@
+using System;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using UnityEngine;
+
+// スタートジングルのフェーズエージェント定義
+public class ClearState: IState
+{
+    private GameManager _gm;
+
+    public ClearState(GameManager gameManager) {
+        _gm = gameManager;
+    }
+
+    public async void Enter() {
+    }
+
+    public void Tick() {
+    }
+
+    public void Exit() {
+    }
+}

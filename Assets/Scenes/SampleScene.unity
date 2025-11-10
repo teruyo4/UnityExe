@@ -172,6 +172,7 @@ MonoBehaviour:
   aarInst: {fileID: 0}
   bgm: {fileID: 598587049}
   gm: {fileID: 465054105}
+  background: {fileID: 1963592068}
 --- !u!1 &389586079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,6 +1428,7 @@ MonoBehaviour:
   sampleElement: {fileID: 888138750875880155, guid: 47cc098c2f95f71fe9b72585b70c7967, type: 3}
   startLabel: {fileID: 2443443862850057225, guid: 77936ad073bf886eb9b530ef36739b43, type: 3}
   finished: {fileID: 608507937630892657, guid: bcba984ce800bad878889deb2d2f9cb2, type: 3}
+  clearDialog: {fileID: 4638429118111954180, guid: b6ccb0bdf215a82abb55aa1c207ae346, type: 3}
   gm: {fileID: 465054105}
 --- !u!4 &1154906782
 Transform:
@@ -1823,6 +1825,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1963592067}
+  - component: {fileID: 1963592068}
   m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
@@ -1848,6 +1851,18 @@ Transform:
   - {fileID: 428081380}
   m_Father: {fileID: 33166929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1963592068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963592066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe388b004a64d06598aa8c65531f0e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Background
 --- !u!1 &2083689014
 GameObject:
   m_ObjectHideFlags: 0

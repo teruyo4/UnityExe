@@ -1,0 +1,30 @@
+using UnityEngine;
+using EasyParallax;
+
+public class TestScript : MonoBehaviour {
+
+    public GameObject sky;
+    public GameObject clouds;
+    public GameObject mountainFar;
+    public GameObject mountainClose;
+
+    public int count = 0;
+    
+    void Update() {
+        if (count > 200) {
+            StopScroll();
+            count=0;
+        }
+        count++;
+    }
+
+    void StopScroll() {
+        for (var i = 0; i < sky.GetComponent<SpriteDuplicator>().duplicatesPool.length; i++) {
+            sky.GetComponent<SpriteDuplicator>().duplicatesPool[i].GetComponent<SpriteMovement>().speed = 0;
+        }
+    }
+
+//    void StopScroll<T>(T go) where T : GameObject {
+//        ;
+//    }
+}
