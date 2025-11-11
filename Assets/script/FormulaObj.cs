@@ -10,7 +10,7 @@ public class FormulaObj : MonoBehaviour {
     public GameManager gm;
 
     private AudioSource audioS;
-    private int lhs, rhs, numAnswer;
+    public int lhs, rhs, numAnswer;
     private int flag;
     private int numNext;     // 次にインプットすべき数字
 

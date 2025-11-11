@@ -374,6 +374,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CutinScene
   cutinStartObj: {fileID: 5249926259880817943, guid: b11fe6422dde32b43a837d03be3e9974, type: 3}
   cutinStartInst: {fileID: 0}
+  cutinClearObj: {fileID: 5272763552805443333, guid: 95aa9ae2f6394b7d792bb259bc2f8ae5, type: 3}
+  cutinClearInst: {fileID: 0}
 --- !u!4 &434490670
 Transform:
   m_ObjectHideFlags: 0
@@ -755,6 +757,8 @@ MonoBehaviour:
   mainBgm: {fileID: 8300000, guid: 5a1b34aeae89e205cad18a314211c6cb, type: 3}
   jingle1: {fileID: 8300000, guid: 50f5360f1774b5f40a80dfe206ca1177, type: 3}
   overBgm: {fileID: 8300000, guid: 69885b4ccbf5716f5b6436cbf229704a, type: 3}
+  runAWay: {fileID: 8300000, guid: 249e9d75b8b67651aa40ae542daa233b, type: 3}
+  clearBgm: {fileID: 8300000, guid: f06d93b20dbdc250b8046f01d7c14b63, type: 3}
 --- !u!82 &598587050
 AudioSource:
   m_ObjectHideFlags: 0

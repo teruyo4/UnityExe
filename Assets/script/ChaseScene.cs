@@ -29,6 +29,7 @@ public struct CameraSize {
 }
 
 public class ChaseScene : MonoBehaviour {
+//    public rabbit rabObj, rabInst;
     public rabbit rabObj, rabInst;
     public alice aliceObj, aliceInst;
     public AliceAndRabbit aar, aarInst;
@@ -152,14 +153,31 @@ public class ChaseScene : MonoBehaviour {
         bgm.GameOverMusic(120f);
     }
 
-    public async void Clear() {
-        var _cts = new CancellationTokenSource();
+    public void Clear() {
+        var pos = rabInst.transform.localPosition + new Vector3(0.8f, 0f, 0f);
         rabInst.opeFlag = false;
         aliceInst.opeFlag = false;
-        bgm.StopAudio();
+        bgm.RunAWayMusic();
         background.StopScroll();
-        rabInst.transform.DOLocalMoveX(1.0f, 1.0f);
-        await UniTask.Delay(2000, cancellationToken: _cts.Token);
+        DOTween.Sequence().Append(rabInst.transform.DOLocalMove(pos, 1.5f))
+        .Join(rabInst.transform.DOLocalMoveY(-0.3f, 1.5f))
+        .Join(rabInst.transform.DOScale(new Vector3(0.1f, 0.1f, 0f), 1.5f))
+        .SetLink(rabInst.gameObject)
+        .OnComplete(() => {
+            Destroy(rabInst.gameObject);
+        });
+        pos = aliceInst.transform.localPosition + new Vector3(0.3f, -0.2f, 0f);
+        DOTween.Sequence().Append(aliceInst.transform.DOLocalMove(pos, 2.0f))
+        .Join(aliceInst.transform.DOScale(new Vector3(0.7f, 0.7f, 0f), 2.0f))
+        .Append(aliceInst.transform.DOLocalMove(pos, 3.0f))
+        .SetLink(aliceInst.gameObject)
+        .OnComplete(() => {
+            Destroy(aliceInst.gameObject);
+        });
+    }
+
+    public void ClearMusic() {
+        bgm.ClearMusic();
     }
 
     public void ClearCharacter() {

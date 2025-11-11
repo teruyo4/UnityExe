@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject clearDialog;
     [SerializeField] GameManager gm;
     
-    private UIDocument _uiDocument;
+    public UIDocument _uiDocument;
     private GameObject ko;
     private GameObject sl;
     

@@ -6,6 +6,8 @@ public class Bgm : MonoBehaviour {
 	[SerializeField] private AudioClip mainBgm;
 	[SerializeField] private AudioClip jingle1;
 	[SerializeField] private AudioClip overBgm;
+	[SerializeField] private AudioClip runAWay;
+	[SerializeField] private AudioClip clearBgm;
     
     public void JingleMusic(float pitch) {
         StopAudio();
@@ -17,6 +19,18 @@ public class Bgm : MonoBehaviour {
         StopAudio();
         Pitch(pitch);
         audioSource.PlayOneShot(mainBgm);
+    }
+
+    public void RunAWayMusic() {
+        StopAudio();
+        Pitch(120f);
+        audioSource.PlayOneShot(runAWay);
+    }
+
+    public void ClearMusic() {
+        StopAudio();
+        Pitch(120f);
+        audioSource.PlayOneShot(clearBgm);
     }
 
     public void StopAudio() {

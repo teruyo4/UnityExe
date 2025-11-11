@@ -16,7 +16,7 @@ public class ProgressRoad : MonoBehaviour {
 
     private float mileStone;
 
-    private static float goalMeter = 100f;
+    private static float goalMeter = 1000f;
 
     public float GetLeftMile() {
         return goalMeter - mileStone;
@@ -39,7 +39,7 @@ public class ProgressRoad : MonoBehaviour {
 
     public void DelProgressRabbit() {
         Debug.Log("DelprogressRabit");
-        Destroy(progressRabbitInst);
+        Destroy(progressRabbitInst.gameObject);
         progressRabbitInst = null;
     }
 

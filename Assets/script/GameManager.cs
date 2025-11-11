@@ -3,6 +3,18 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine;
 
+public struct Record {
+    public int lhs;
+    public int rhs;
+    public float answerTime;
+
+    public Record (int a, int b, float c) {
+        lhs = a;
+        rhs = b;
+        answerTime = c;
+    }
+}
+
 public class GameManager : MonoBehaviour
 {
     public FormulaObj formulaObj;
@@ -13,6 +25,7 @@ public class GameManager : MonoBehaviour
     public CutinScene cutinScene;
     public AudioClip[,] audioC = new AudioClip[9, 9];
     public List<FormulaObj> formulaList = new List<FormulaObj>();
+    public List<Record> records = new List<Record>();
     public ProgressRoad progressRoad;
 
     public float SuperTime, GoodTime, NormalTime;

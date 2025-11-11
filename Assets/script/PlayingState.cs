@@ -14,6 +14,7 @@ public class PlayingState : IState
 
     public void Enter() {
         Debug.Log("Enter PlayingState");
+        _gm.records.Clear();
         _gm.SpawnFObj();
         _gm.changeCur();
         _gm.SpawnFObj();
@@ -50,18 +51,20 @@ public class PlayingState : IState
     }
     
     private void CorrectAnswer(FormulaObj fo) {
-        // 正解なら式Objリストから現状の式Objを外す。
+        // 正解なので式Objリストから現状の式Objを外す。
         _gm.formulaList.Remove(fo);
         _gm.formulaList[0].changeCur();
         if (_gm.formulaList.Count == 1) {
             _gm.nextInterval = 0; // すぐ次の問題を出すためにインターバルなくす。
         }
+        // 計算式と解答秒数を記録する。
+        var diff = Time.time - _gm.startTime;
+        _gm.records.Add(new Record(fo.lhs, fo.rhs, diff));
         // 回答までの時間でラビットの動きを変化させる。
         // 超速: １秒間、速度を+2で動かす。アニメ速度増し増し
         // 速し: １秒間、速度を+1で動かす。アニメ速度増し。
         // 普通: １秒間、速度は0にする。
         // 遅し: 速度は変わらない。
-        var diff = Time.time - _gm.startTime;
         if (diff < _gm.SuperTime) {
             _gm.chaseScene.ExecuteOperation(Grades.Super);
         } else if (diff < _gm.GoodTime) {
