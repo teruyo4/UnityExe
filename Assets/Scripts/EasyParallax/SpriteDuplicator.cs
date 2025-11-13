@@ -104,18 +104,21 @@ namespace EasyParallax
 
         public void PauseMovement()
         {
-            for (var i = 0; i < poolSize; i++)
-            {
-                duplicatesPool[i].GetComponent<SpriteMovement>().speed = 0;
-            }
+            PlayMovement(0f);
         }
 
         public void PlayMovement()
         {
+            PlayMovement(1.0f);
+        }
+        
+        public void PlayMovement(float magnification)
+        {
             float sp = transform.GetComponent<SpriteMovement>().movementSpeedType.speed;
+            Debug.Log($"sp = {sp}, magni = {magnification}");
             for (var i = 0; i < poolSize; i++)
             {
-                duplicatesPool[i].GetComponent<SpriteMovement>().speed = sp;
+                duplicatesPool[i].GetComponent<SpriteMovement>().speed = sp * magnification;
             }
         }
         

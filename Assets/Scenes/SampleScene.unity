@@ -144,13 +144,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33166928}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.65, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1963592067}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 349019353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &33166930
 MonoBehaviour:
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05520e24ebf16ac296caa479dd3f0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChaseScene
+  behaviorOfChaseSceneList: {fileID: 11400000, guid: c7c609964add9747483cf8ec1790d5d4, type: 2}
   rabObj: {fileID: 2885188816664306955, guid: fe847a38bead991329457f3f27fd10e2, type: 3}
   rabInst: {fileID: 0}
   aliceObj: {fileID: -7677954274779768595, guid: 31f26358a47ead9db812e79351f158bc, type: 3}
@@ -173,6 +174,38 @@ MonoBehaviour:
   bgm: {fileID: 598587049}
   gm: {fileID: 465054105}
   background: {fileID: 1963592068}
+--- !u!1 &349019352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 349019353}
+  m_Layer: 0
+  m_Name: ChaseSceneParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &349019353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349019352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 33166929}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &389586079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,6 +1467,7 @@ MonoBehaviour:
   finished: {fileID: 608507937630892657, guid: bcba984ce800bad878889deb2d2f9cb2, type: 3}
   clearDialog: {fileID: 4638429118111954180, guid: b6ccb0bdf215a82abb55aa1c207ae346, type: 3}
   gm: {fileID: 465054105}
+  _uiDocument: {fileID: 0}
 --- !u!4 &1154906782
 Transform:
   m_ObjectHideFlags: 0
@@ -1999,7 +2033,7 @@ SceneRoots:
   - {fileID: 855067621}
   - {fileID: 1405461715}
   - {fileID: 1675632683}
-  - {fileID: 33166929}
   - {fileID: 434490670}
   - {fileID: 598587051}
   - {fileID: 389586080}
+  - {fileID: 349019353}

@@ -29,7 +29,9 @@ public struct CameraSize {
 }
 
 public class ChaseScene : MonoBehaviour {
-//    public rabbit rabObj, rabInst;
+
+    public BehaviorOfChaseSceneList behaviorOfChaseSceneList;
+    
     public rabbit rabObj, rabInst;
     public alice aliceObj, aliceInst;
     public AliceAndRabbit aar, aarInst;
@@ -38,18 +40,17 @@ public class ChaseScene : MonoBehaviour {
     public Background background;
     
     private List<Operation> opeList;
-    private List<CameraSize> csList;
+//    private List<CameraSize> csList;
+    private List<BehaviorOfChaseScene> csList = new List<BehaviorOfChaseScene>();
     private int cameraPos = 1;
     private CancellationTokenSource cts;
     private const float staPos = 1.5f;
 
     void Start() {
-        csList = new List<CameraSize>() {
-            new CameraSize { sceneScale = 0.6f, posY = 0.4f, minDist = 3f, maxDist = 100f, bpm = 100f },
-            new CameraSize { sceneScale = 0.8f, posY = 0.5f, minDist = 2f, maxDist = 4f, bpm = 120f },
-            new CameraSize { sceneScale = 1.2f, posY = 0.6f, minDist = 1f, maxDist = 3f, bpm = 140f },
-            new CameraSize { sceneScale = 1.5f, posY = 0.8f, minDist = 0f, maxDist = 2f, bpm = 160f }
-        };
+//        foreach (BehaviorOfChaseScene bocs in behaviorOfChaseScenes.behaviorOfChaseScenes) {
+//            csList.Add(bocs);
+        //        }
+        csList = behaviorOfChaseSceneList.behaviorOfChaseScenes;
     }
 
     public void PreStartChase() {
@@ -204,10 +205,12 @@ public class ChaseScene : MonoBehaviour {
         cameraPos += status;
         
         DOTween.Sequence()
-            .Append(transform.DOScale(
-                new Vector3(csList[cameraPos].sceneScale, csList[cameraPos].sceneScale, 0), 0.5f))
-            .Join(transform.DOLocalMove(new Vector3(0f, csList[cameraPos].posY, 0f), 0.5f));
+            .Append(transform.parent.DOScale(
+                new Vector3(csList[cameraPos].sceneScale, csList[cameraPos].sceneScale, 0), 0.5f));
+//            .Join(transform.DOLocalMove(new Vector3(0f, csList[cameraPos].posY, 0f), 0.5f));
+        
         bgm.Pitch(csList[cameraPos].bpm);
-       
+        background.ChangeScrollSpeed(csList[cameraPos].sceneScale);
+        Debug.Log($"speed = {csList[cameraPos].sceneScale}");
     }
 }
