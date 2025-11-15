@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class LevelSelect : MonoBehaviour {
 
-    [SerializeField] GameObject LevelSelectUI;
+    [SerializeField] public GameObject LevelSelectUI;
     
     private UIDocument _uiDocument;
     private int levelSelected = 0;
@@ -20,6 +20,7 @@ public class LevelSelect : MonoBehaviour {
         var radioGroup = _uiDocument.rootVisualElement.Q<RadioButtonGroup>("LevelSelect");
         radioGroup.RegisterValueChangedCallback(evt => {
             levelSelected = evt.newValue;
+            LevelSetting.level = evt.newValue;
             Debug.Log($"Level: {evt.newValue}");
         });
         radioGroup.value = levelSelected;

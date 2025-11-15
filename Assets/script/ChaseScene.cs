@@ -20,18 +20,8 @@ public enum Grades {
     None
 }
 
-public struct CameraSize {
-    public float sceneScale;
-    public float posY;
-    public float minDist;
-    public float maxDist;
-    public float bpm;
-}
-
 public class ChaseScene : MonoBehaviour {
 
-    public BehaviorOfChaseSceneList behaviorOfChaseSceneList;
-    
     public rabbit rabObj, rabInst;
     public alice aliceObj, aliceInst;
     public AliceAndRabbit aar, aarInst;
@@ -40,17 +30,13 @@ public class ChaseScene : MonoBehaviour {
     public Background background;
     
     private List<Operation> opeList;
-//    private List<CameraSize> csList;
-    private List<BehaviorOfChaseScene> csList = new List<BehaviorOfChaseScene>();
+    private List<ChaseOpeElem> csList;
     private int cameraPos = 1;
     private CancellationTokenSource cts;
     private const float staPos = 1.5f;
 
-    void Start() {
-//        foreach (BehaviorOfChaseScene bocs in behaviorOfChaseScenes.behaviorOfChaseScenes) {
-//            csList.Add(bocs);
-        //        }
-        csList = behaviorOfChaseSceneList.behaviorOfChaseScenes;
+    void Awake() {
+        csList = Resources.Load<ChaseOpe>("Data/ChaseOpe").Opes;
     }
 
     public void PreStartChase() {
@@ -143,15 +129,14 @@ public class ChaseScene : MonoBehaviour {
         gameAgent.Goal();
     }
 
-    public async void GameOver() {
-        var _cts = new CancellationTokenSource();
+    public void GameOver() {
+        rabInst.opeFlag = false;
+        aliceInst.opeFlag = false;
         ClearCharacter();
         aarInst = Instantiate(aar, transform);
         aarInst.transform.localPosition = new Vector3(0f, 0f, 0f);
         bgm.StopAudio();
         background.StopScroll();
-        await UniTask.Delay(1000, cancellationToken: _cts.Token);
-        bgm.GameOverMusic(120f);
     }
 
     public void Clear() {

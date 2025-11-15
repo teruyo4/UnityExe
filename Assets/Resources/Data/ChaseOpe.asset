@@ -9,27 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Data
-  m_EditorClassIdentifier: Assembly-CSharp::BehaviorOfChaseSceneList
-  behaviorOfChaseScenes:
+  m_Script: {fileID: 11500000, guid: 0dc8f847352c8152497f5ba2ad893fb3, type: 3}
+  m_Name: ChaseOpe
+  m_EditorClassIdentifier: Assembly-CSharp::ChaseOpe
+  Opes:
   - sceneScale: 0.6
-    posY: 1
-    minDist: 1.2
+    posY: 0.4
+    minDist: 3
     maxDist: 100
     bpm: 100
   - sceneScale: 0.8
-    posY: 0
-    minDist: 0.8
-    maxDist: 1.4
+    posY: 0.5
+    minDist: 2
+    maxDist: 4
     bpm: 120
-  - sceneScale: 1
-    posY: 0
-    minDist: 0.4
-    maxDist: 1
+  - sceneScale: 1.2
+    posY: 0.6
+    minDist: 1
+    maxDist: 3
     bpm: 140
   - sceneScale: 1.5
-    posY: 1
-    minDist: 0.3
-    maxDist: 0.5
+    posY: 0.8
+    minDist: 0
+    maxDist: 2
     bpm: 160

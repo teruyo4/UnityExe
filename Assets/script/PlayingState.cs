@@ -7,9 +7,11 @@ using UnityEngine;
 public class PlayingState : IState
 {
     private GameManager _gm;
+    private LevelSetting levelSetting;
 
     public PlayingState(GameManager gameManager) {
         _gm = gameManager;
+        levelSetting = Resources.Load<LevelSetting>("Data/LevelSetting");
     }
 
     public void Enter() {
@@ -65,11 +67,11 @@ public class PlayingState : IState
         // 速し: １秒間、速度を+1で動かす。アニメ速度増し。
         // 普通: １秒間、速度は0にする。
         // 遅し: 速度は変わらない。
-        if (diff < _gm.SuperTime) {
+        if (diff < levelSetting.settings[LevelSetting.level].super) {
             _gm.chaseScene.ExecuteOperation(Grades.Super);
-        } else if (diff < _gm.GoodTime) {
+        } else if (diff < levelSetting.settings[LevelSetting.level].good) {
             _gm.chaseScene.ExecuteOperation(Grades.Good);
-        } else if (diff < _gm.NormalTime) {
+        } else if (diff < levelSetting.settings[LevelSetting.level].normal) {
             _gm.chaseScene.ExecuteOperation(Grades.Normal);
         } else {
             _gm.chaseScene.ExecuteOperation(Grades.Bad);

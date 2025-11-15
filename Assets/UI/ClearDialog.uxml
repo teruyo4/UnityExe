@@ -2,7 +2,7 @@
     <ui:VisualElement name="Top" style="flex-grow: 1;">
         <ui:VisualElement name="Dialog" style="flex-grow: initial; top: 15%; width: 90%; height: 60%; left: 5%; background-image: resource(&apos;images/window&apos;);">
             <ui:VisualElement name="frame1" style="flex-grow: initial; top: 5%; width: 90%; height: 15%; left: 5%; justify-content: center;">
-                <ui:Label text="Congratulations!!&#10;" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;); font-size: 80px; -unity-text-align: upper-center; color: rgb(217, 26, 173); -unity-font-style: bold;" />
+                <ui:Label text="Congratulations!!&#10;" name="Message" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;); font-size: 80px; -unity-text-align: upper-center; color: rgb(217, 26, 173); -unity-font-style: bold;" />
             </ui:VisualElement>
             <ui:VisualElement name="frame2" style="flex-grow: initial; left: 5%; width: 90%; height: 70%; top: 0%;">
                 <ui:VisualElement name="Blank" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 5%;" />

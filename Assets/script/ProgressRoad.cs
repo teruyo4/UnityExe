@@ -18,6 +18,8 @@ public class ProgressRoad : MonoBehaviour {
 
     private static float goalMeter = 1000f;
 
+    private MileStoneImage ms;
+
     public float GetLeftMile() {
         return goalMeter - mileStone;
     }
@@ -48,11 +50,16 @@ public class ProgressRoad : MonoBehaviour {
             if (mileStone >= goalMeter) {
                 Instantiate(hole, chaseScene.transform);
             } else {
-                var ms = Instantiate(mileStoneImage, chaseScene.transform);
+                ms = Instantiate(mileStoneImage, chaseScene.transform);
             }
             mileStone += 100f;
         }
        
     }
-    
+
+    public void DelMileStone() {
+        if (ms != null) {
+            Destroy(ms.gameObject);
+        }
+    }
 }

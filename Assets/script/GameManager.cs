@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour
     public List<FormulaObj> formulaList = new List<FormulaObj>();
     public List<Record> records = new List<Record>();
     public ProgressRoad progressRoad;
-
-    public float SuperTime, GoodTime, NormalTime;
     
     private FormulaObj formulaInst;
     public float startTime, spawnTime;

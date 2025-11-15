@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05520e24ebf16ac296caa479dd3f0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChaseScene
-  behaviorOfChaseSceneList: {fileID: 11400000, guid: c7c609964add9747483cf8ec1790d5d4, type: 2}
+  behaviorOfChaseSceneList: {fileID: 11400000, guid: 769fb0bf8660dfe689138f1c916b5b3b, type: 2}
   rabObj: {fileID: 2885188816664306955, guid: fe847a38bead991329457f3f27fd10e2, type: 3}
   rabInst: {fileID: 0}
   aliceObj: {fileID: -7677954274779768595, guid: 31f26358a47ead9db812e79351f158bc, type: 3}
@@ -584,9 +584,7 @@ MonoBehaviour:
   cutinScene: {fileID: 434490669}
   formulaList: []
   progressRoad: {fileID: 389586081}
-  SuperTime: 1.5
-  GoodTime: 2
-  NormalTime: 3
+  levelSetting: {fileID: 11400000, guid: 73a0a6c0925ffed798d71bb02146cd04, type: 2}
   startTime: 0
   spawnTime: 0
   intervalTime: 5

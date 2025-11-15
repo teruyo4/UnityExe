@@ -36,7 +36,7 @@ public class ClearState: IState
         _gm.cutinScene.ClearScene();
         await UniTask.Delay(3000, cancellationToken: cts.Token);
 
-        _gm.kb.SpawnClearDialog();
+        _gm.kb.SpawnClearDialog("Congratulations !!");
         CalcScore();
         DisplayScore();
     }

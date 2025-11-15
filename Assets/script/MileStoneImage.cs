@@ -21,5 +21,6 @@ public class MileStoneImage : MonoBehaviour {
         progressRoad = (GameObject.FindWithTag("progressroad")).GetComponent<ProgressRoad>();
         pt2inst.GetComponent<TextMeshPro>().text = $" {progressRoad.GetLeftMile()}";
     }
+
 }
 

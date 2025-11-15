@@ -40,9 +40,12 @@ public class UIController : MonoBehaviour
         };
     }
         
-    public void SpawnClearDialog() {
+    public void SpawnClearDialog(string title) {
         var fl = Instantiate(clearDialog);
         _uiDocument = fl.GetComponent<UIDocument>();
+
+        var message = _uiDocument.rootVisualElement.Q<Label>($"Message");
+        message.text = title;
 
         var btn = _uiDocument.rootVisualElement.Q<Button>($"clearbutton");
         btn.clickable.clicked += () => {
