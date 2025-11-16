@@ -16,7 +16,6 @@ public class GameOverState: IState
     }
 
     public void Enter() {
-        Debug.Log("Enter GameOver.");
         GameOverPeform();
     }
 
@@ -31,7 +30,7 @@ public class GameOverState: IState
         // 追跡シーンでつかまっちゃったスプライト表示。終わるまで３秒待つ。
         _gm.chaseScene.GameOver();
         _gm.kb.SpawnFinished();
-        // bgm.GameOverMusic(120f);
+        _gm.bgm.GameOverMusic(120f);
         await UniTask.Delay(3000, cancellationToken: cts.Token);
 
         _gm.kb.SpawnClearDialog("Game Over");
@@ -43,14 +42,15 @@ public class GameOverState: IState
     }
 
     public void Exit() {
-        Debug.Log("Exit GameOver.");
         _gm.chaseScene.ClearCharacter();
     }
 
-        private void CalcScore() {
+    private void CalcScore() {
         foreach (var rec in _gm.records) {
             answerNum[rec.lhs-1]++;
+            answerNum[9]++;
             average[rec.lhs-1] += rec.answerTime;
+            average[9] += rec.answerTime;
         }
         for (var i = 0; i < 9; i++) {
             if (answerNum[i] != 0) {
@@ -58,6 +58,9 @@ public class GameOverState: IState
             } else {
                 average[i] = 0;
             }
+        }
+        if (answerNum[9] != 0) {
+            average[9] = average[9] / answerNum[9];
         }
     }
 
@@ -73,7 +76,8 @@ public class GameOverState: IState
         label.text = $"６の段：{answerNum[5]}\n" +
                      $"７の段：{answerNum[6]}\n" +
                      $"８の段：{answerNum[7]}\n" +
-                     $"９の段：{answerNum[8]}\n";
+                     $"９の段：{answerNum[8]}\n" +
+                     $"合　計：{answerNum[9]}\n";
         label = root.Q<Label>("AverageOfAnswer1");
         label.text = $"１の段：{average[0]:F2}秒\n" +
                      $"２の段：{average[1]:F2}秒\n" +
@@ -84,8 +88,8 @@ public class GameOverState: IState
         label.text = $"６の段：{average[5]:F2}秒\n" +
                      $"７の段：{average[6]:F2}秒\n" +
                      $"８の段：{average[7]:F2}秒\n" +
-                     $"９の段：{average[8]:F2}秒\n";
+                     $"９の段：{average[8]:F2}秒\n" +
+                     $"全　体：{average[9]:F2}秒\n";
     }
-
 }
 

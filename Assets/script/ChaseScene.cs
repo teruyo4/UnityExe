@@ -25,7 +25,6 @@ public class ChaseScene : MonoBehaviour {
     public rabbit rabObj, rabInst;
     public alice aliceObj, aliceInst;
     public AliceAndRabbit aar, aarInst;
-    public Bgm bgm;
     public GameManager gm;
     public Background background;
     
@@ -55,7 +54,7 @@ public class ChaseScene : MonoBehaviour {
         rabInst.ChangeBehaviour(0f, 1.0f);
         
         // スタートジングル音出し
-        bgm.JingleMusic(180); 
+        gm.bgm.JingleMusic(180); 
 
         // キャラクターのスタート位置への移動
         DOTween.Sequence()
@@ -67,7 +66,7 @@ public class ChaseScene : MonoBehaviour {
         ExecuteOperation(Grades.None);
         aliceInst.opeFlag = true;
         rabInst.opeFlag = true;
-        bgm.MainMusic(csList[cameraPos].bpm);
+        gm.bgm.MainMusic(csList[cameraPos].bpm);
     }
 
     // 引数の指定に合わせて動作リストを作成する。
@@ -119,7 +118,6 @@ public class ChaseScene : MonoBehaviour {
     }
 
     public void BeCaught() {
-        Debug.Log("be caught.");
         var gameAgent = gm.GameAgent() as PlayingState;
         gameAgent.BeCaught();
     }
@@ -135,7 +133,7 @@ public class ChaseScene : MonoBehaviour {
         ClearCharacter();
         aarInst = Instantiate(aar, transform);
         aarInst.transform.localPosition = new Vector3(0f, 0f, 0f);
-        bgm.StopAudio();
+        gm.bgm.StopAudio();
         background.StopScroll();
     }
 
@@ -143,7 +141,7 @@ public class ChaseScene : MonoBehaviour {
         var pos = rabInst.transform.localPosition + new Vector3(0.8f, 0f, 0f);
         rabInst.opeFlag = false;
         aliceInst.opeFlag = false;
-        bgm.RunAWayMusic();
+        gm.bgm.RunAWayMusic();
         background.StopScroll();
         DOTween.Sequence().Append(rabInst.transform.DOLocalMove(pos, 1.5f))
         .Join(rabInst.transform.DOLocalMoveY(-0.3f, 1.5f))
@@ -163,7 +161,7 @@ public class ChaseScene : MonoBehaviour {
     }
 
     public void ClearMusic() {
-        bgm.ClearMusic();
+        gm.bgm.ClearMusic();
     }
 
     public void ClearCharacter() {
@@ -192,10 +190,8 @@ public class ChaseScene : MonoBehaviour {
         DOTween.Sequence()
             .Append(transform.parent.DOScale(
                 new Vector3(csList[cameraPos].sceneScale, csList[cameraPos].sceneScale, 0), 0.5f));
-//            .Join(transform.DOLocalMove(new Vector3(0f, csList[cameraPos].posY, 0f), 0.5f));
         
-        bgm.Pitch(csList[cameraPos].bpm);
+        gm.bgm.Pitch(csList[cameraPos].bpm);
         background.ChangeScrollSpeed(csList[cameraPos].sceneScale);
-        Debug.Log($"speed = {csList[cameraPos].sceneScale}");
     }
 }

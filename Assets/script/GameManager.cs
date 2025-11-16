@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public List<FormulaObj> formulaList = new List<FormulaObj>();
     public List<Record> records = new List<Record>();
     public ProgressRoad progressRoad;
+    public Bgm bgm;
     
     private FormulaObj formulaInst;
     public float startTime, spawnTime;
@@ -61,7 +62,6 @@ public class GameManager : MonoBehaviour
     
     void LoadAudioClip() {
         // 9x9 audio clip の読み込み
-        Debug.Log("load audio clip");
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
                 audioC[x, y] = Resources.Load<AudioClip>($"voice/{x+1}x{y+1}");

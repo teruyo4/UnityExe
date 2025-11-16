@@ -1,53 +1,55 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="Top" style="flex-grow: 1;">
-        <ui:VisualElement name="Dialog" style="flex-grow: initial; top: 15%; width: 90%; height: 60%; left: 5%; background-image: resource(&apos;images/window&apos;);">
-            <ui:VisualElement name="frame1" style="flex-grow: initial; top: 5%; width: 90%; height: 15%; left: 5%; justify-content: center;">
-                <ui:Label text="Congratulations!!&#10;" name="Message" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;); font-size: 80px; -unity-text-align: upper-center; color: rgb(217, 26, 173); -unity-font-style: bold;" />
-            </ui:VisualElement>
-            <ui:VisualElement name="frame2" style="flex-grow: initial; left: 5%; width: 90%; height: 70%; top: 0%;">
-                <ui:VisualElement name="Blank" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 5%;" />
-                <ui:VisualElement name="NumberOfFormula" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 30%; flex-direction: column;">
-                    <ui:VisualElement name="Title1" style="flex-grow: initial; top: 0%; left: 0%; width: 100%; height: 20%;">
-                        <ui:Label text="【解いた問題数】" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="Result1" style="flex-grow: initial; top: 0%; left: 0%; width: 100%; height: 100%; flex-direction: row;">
-                        <ui:VisualElement name="Result1_left" style="flex-grow: initial; top: 0%; left: 0%; width: 10%; height: 100%;" />
-                        <ui:VisualElement name="Result1_left" style="flex-grow: initial; top: 0%; left: 0%; width: 45%; height: 100%;">
-                            <ui:Label text="１の段：&#10;２の段：&#10;３の段：&#10;４の段：&#10;５の段：" name="NumOfAnswer1" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
+        <ui:VisualElement name="shadow" style="flex-grow: initial; background-color: rgba(0, 0, 0, 0.69); top: 10%; left: 3%; width: 94%; height: 70%;">
+            <ui:VisualElement name="Dialog" style="flex-grow: initial; top: 3%; width: 96%; height: 94%; left: 2%; background-image: resource(&apos;images/window&apos;);">
+                <ui:VisualElement name="frame1" style="flex-grow: initial; top: 5%; width: 90%; height: 15%; left: 5%; justify-content: center;">
+                    <ui:Label text="Congratulations!!&#10;" name="Message" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&amp;guid=e3265ab4bf004d28a9537516768c1c75&amp;type=3#LiberationSans&quot;); font-size: 80px; -unity-text-align: upper-center; color: rgb(217, 26, 173); -unity-font-style: bold;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="frame2" style="flex-grow: initial; left: 5%; width: 90%; height: 70%; top: 0%;">
+                    <ui:VisualElement name="Blank" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 5%;" />
+                    <ui:VisualElement name="NumberOfFormula" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 30%; flex-direction: column;">
+                        <ui:VisualElement name="Title1" style="flex-grow: initial; top: 0%; left: 0%; width: 100%; height: 20%;">
+                            <ui:Label text="【解いた問題数】" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="Result1_right" style="flex-grow: initial; top: auto; left: auto; width: 45%; height: 100%;">
-                            <ui:Label text="６の段：&#10;７の段：&#10;８の段：&#10;９の段：" name="NumOfAnswer2" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
+                        <ui:VisualElement name="Result1" style="flex-grow: initial; top: 0%; left: 0%; width: 100%; height: 100%; flex-direction: row;">
+                            <ui:VisualElement name="Result1_left" style="flex-grow: initial; top: 0%; left: 0%; width: 10%; height: 100%;" />
+                            <ui:VisualElement name="Result1_left" style="flex-grow: initial; top: 0%; left: 0%; width: 45%; height: 100%;">
+                                <ui:Label text="１の段：&#10;２の段：&#10;３の段：&#10;４の段：&#10;５の段：" name="NumOfAnswer1" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="Result1_right" style="flex-grow: initial; top: auto; left: auto; width: 45%; height: 100%;">
+                                <ui:Label text="６の段：&#10;７の段：&#10;８の段：&#10;９の段：" name="NumOfAnswer2" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Blank" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 5%;" />
+                    <ui:VisualElement name="AverageOfAnswer" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 30%; flex-direction: column;">
+                        <ui:VisualElement name="Title1" style="flex-grow: initial; top: 0%; left: 0%; width: 100%; height: 20%;">
+                            <ui:Label text="【平均回答速度】&#x9;" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Result1" style="flex-grow: initial; top: 0%; left: 0%; width: 100%; height: 100%; flex-direction: row;">
+                            <ui:VisualElement name="Result1_left" style="flex-grow: initial; top: 0%; left: 0%; width: 10%; height: 100%;" />
+                            <ui:VisualElement name="Result1_left" style="flex-grow: initial; top: 0%; left: 0%; width: 45%; height: 100%;">
+                                <ui:Label text="１の段：&#10;２の段：&#10;３の段：&#10;４の段：&#10;５の段：" name="AverageOfAnswer1" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="Result1_right" style="flex-grow: initial; top: auto; left: auto; width: 45%; height: 100%;">
+                                <ui:Label text="６の段：&#10;７の段：&#10;８の段：&#10;９の段：" name="AverageOfAnswer2" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Blank" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 5%;" />
+                    <ui:VisualElement name="Score" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 30%; flex-direction: row;">
+                        <ui:VisualElement name="LeftString" style="flex-grow: initial; top: 0%; left: 0%; width: 70%; height: 100%;">
+                            <ui:Label text="スコア" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="RightString" style="flex-grow: initial; top: 0%; left: 0%; width: 30%; height: 100%;">
+                            <ui:Label text="50" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="Blank" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 5%;" />
-                <ui:VisualElement name="AverageOfAnswer" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 30%; flex-direction: column;">
-                    <ui:VisualElement name="Title1" style="flex-grow: initial; top: 0%; left: 0%; width: 100%; height: 20%;">
-                        <ui:Label text="【平均回答速度】&#x9;" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
+                <ui:VisualElement name="frame3" style="flex-grow: initial; top: 0%; left: 5%; flex-shrink: initial; width: 90%; height: 15%;">
+                    <ui:VisualElement name="buttonframe" style="flex-grow: initial; left: 35%; width: 30%; height: 50%; top: 20%; justify-content: center;">
+                        <ui:Button text="OK&#10;" name="clearbutton" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/%E5%92%8C%E9%A2%A8%E3%81%BD%E3%81%A3%E3%81%B7.ttf?fileID=12800000&amp;guid=5eb6f64963c6192bbbdb07788a12c0a7&amp;type=3#和風ぽっぷ&quot;); font-size: 60px; background-color: rgb(82, 214, 85); -unity-text-outline-width: 0; border-top-color: rgb(255, 255, 255); border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-bottom-right-radius: 40px; border-bottom-left-radius: 40px; border-bottom-color: rgb(16, 106, 27); border-right-color: rgb(58, 101, 60); border-left-color: rgb(138, 226, 149);" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="Result1" style="flex-grow: initial; top: 0%; left: 0%; width: 100%; height: 100%; flex-direction: row;">
-                        <ui:VisualElement name="Result1_left" style="flex-grow: initial; top: 0%; left: 0%; width: 10%; height: 100%;" />
-                        <ui:VisualElement name="Result1_left" style="flex-grow: initial; top: 0%; left: 0%; width: 45%; height: 100%;">
-                            <ui:Label text="１の段：&#10;２の段：&#10;３の段：&#10;４の段：&#10;５の段：" name="AverageOfAnswer1" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
-                        </ui:VisualElement>
-                        <ui:VisualElement name="Result1_right" style="flex-grow: initial; top: auto; left: auto; width: 45%; height: 100%;">
-                            <ui:Label text="６の段：&#10;７の段：&#10;８の段：&#10;９の段：" name="AverageOfAnswer2" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:VisualElement name="Blank" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 5%;" />
-                <ui:VisualElement name="Score" style="flex-grow: initial; top: 0%; left: 5%; width: 90%; height: 30%; flex-direction: row;">
-                    <ui:VisualElement name="LeftString" style="flex-grow: initial; top: 0%; left: 0%; width: 70%; height: 100%;">
-                        <ui:Label text="スコア" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="RightString" style="flex-grow: initial; top: 0%; left: 0%; width: 30%; height: 100%;">
-                        <ui:Label text="50" style="font-size: 50px; -unity-font-definition: url(&quot;project://database/Assets/fonts/keifont.ttf?fileID=12800000&amp;guid=5792c1e6169295539821091159cafe05&amp;type=3#keifont&quot;);" />
-                    </ui:VisualElement>
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="frame3" style="flex-grow: initial; top: 0%; left: 5%; flex-shrink: initial; width: 90%; height: 15%;">
-                <ui:VisualElement name="buttonframe" style="flex-grow: initial; left: 35%; width: 30%; height: 50%; top: 20%; justify-content: center;">
-                    <ui:Button text="OK&#10;" name="clearbutton" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/%E5%92%8C%E9%A2%A8%E3%81%BD%E3%81%A3%E3%81%B7.ttf?fileID=12800000&amp;guid=5eb6f64963c6192bbbdb07788a12c0a7&amp;type=3#和風ぽっぷ&quot;); font-size: 60px; background-color: rgb(82, 214, 85); -unity-text-outline-width: 0; border-top-color: rgb(255, 255, 255); border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-bottom-right-radius: 40px; border-bottom-left-radius: 40px; border-bottom-color: rgb(16, 106, 27); border-right-color: rgb(58, 101, 60); border-left-color: rgb(138, 226, 149);" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

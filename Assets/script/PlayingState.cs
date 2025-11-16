@@ -15,7 +15,6 @@ public class PlayingState : IState
     }
 
     public void Enter() {
-        Debug.Log("Enter PlayingState");
         _gm.records.Clear();
         _gm.SpawnFObj();
         _gm.changeCur();
@@ -31,7 +30,6 @@ public class PlayingState : IState
     }
 
     public void Exit() {
-        Debug.Log("Exit PlayingState");
     }
 
     public void BeCaught() {

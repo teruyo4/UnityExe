@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ProgressRoad : MonoBehaviour {
 
+    public GameParameter gameParameter;
+    
     public ProgressBack progressBack;
     public ProgressRabbit progressRabbit;
     public MileStoneImage mileStoneImage;
@@ -16,12 +18,10 @@ public class ProgressRoad : MonoBehaviour {
 
     private float mileStone;
 
-    private static float goalMeter = 1000f;
-
     private MileStoneImage ms;
 
     public float GetLeftMile() {
-        return goalMeter - mileStone;
+        return gameParameter.RoadDistance - mileStone;
     }
     
     public void SetProgressRoad() {
@@ -32,7 +32,6 @@ public class ProgressRoad : MonoBehaviour {
         progressRabbitInst = Instantiate(progressRabbit, transform);
         progressRabbitInst.transform.localPosition = new Vector3(-2f, 0f, 0f);
         rbRabbit = progressRabbitInst.GetComponent<Rigidbody2D>();
-        rbRabbit.AddForce(new Vector2(0.1f, 0f), ForceMode2D.Impulse);
         rbAnim = progressRabbitInst.GetComponent<Animator>();
         rbAnim.speed = 5f;
 
@@ -40,14 +39,13 @@ public class ProgressRoad : MonoBehaviour {
     }
 
     public void DelProgressRabbit() {
-        Debug.Log("DelprogressRabit");
         Destroy(progressRabbitInst.gameObject);
         progressRabbitInst = null;
     }
 
     void FixedUpdate() {
         if (progressRabbitInst != null && progressRabbitInst.progressMeter() >= mileStone) {
-            if (mileStone >= goalMeter) {
+            if (mileStone >= gameParameter.RoadDistance) {
                 Instantiate(hole, chaseScene.transform);
             } else {
                 ms = Instantiate(mileStoneImage, chaseScene.transform);
@@ -61,5 +59,9 @@ public class ProgressRoad : MonoBehaviour {
         if (ms != null) {
             Destroy(ms.gameObject);
         }
+    }
+
+    public float ProgressRoadSize() {
+        return progressBackInst.size.x;
     }
 }

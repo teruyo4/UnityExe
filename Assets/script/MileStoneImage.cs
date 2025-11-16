@@ -11,6 +11,7 @@ public class MileStoneImage : MonoBehaviour {
         transform.localPosition = new Vector3(4f, -0.3f, 0f);
         transform.DOLocalMove(new Vector3(-5f, -0.3f, 0f), 4f)
         .SetEase(Ease.Linear)
+        .SetLink(gameObject)
         .OnComplete(() => {
             Destroy(gameObject);
         });

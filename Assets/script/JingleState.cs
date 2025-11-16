@@ -13,7 +13,6 @@ public class JingleState: IState
     }
 
     public async void Enter() {
-        Debug.Log("Enter Jingle.");
         var cts = new CancellationTokenSource();
         _gm.kb.SpawnKeyboard();
         _gm.cutinScene.StartScene();
@@ -30,6 +29,5 @@ public class JingleState: IState
     }
 
     public void Exit() {
-        Debug.Log("Exit Jingle.");
     }
 }

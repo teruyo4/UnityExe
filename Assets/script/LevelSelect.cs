@@ -21,7 +21,6 @@ public class LevelSelect : MonoBehaviour {
         radioGroup.RegisterValueChangedCallback(evt => {
             levelSelected = evt.newValue;
             LevelSetting.level = evt.newValue;
-            Debug.Log($"Level: {evt.newValue}");
         });
         radioGroup.value = levelSelected;
     }

@@ -71,7 +71,6 @@ public class UIController : MonoBehaviour
     }
 
     void InputNumberLine(int num) {
-        Debug.Log($"agentname = {gm.GameAgent()}");
         if (gm.GameAgent().GetType() == typeof(PlayingState)) {
             var gameAgent = gm.GameAgent() as PlayingState;
             switch (gameAgent.InputNumber(num)) {

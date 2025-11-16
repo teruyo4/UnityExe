@@ -164,14 +164,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05520e24ebf16ac296caa479dd3f0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChaseScene
-  behaviorOfChaseSceneList: {fileID: 11400000, guid: 769fb0bf8660dfe689138f1c916b5b3b, type: 2}
   rabObj: {fileID: 2885188816664306955, guid: fe847a38bead991329457f3f27fd10e2, type: 3}
   rabInst: {fileID: 0}
   aliceObj: {fileID: -7677954274779768595, guid: 31f26358a47ead9db812e79351f158bc, type: 3}
   aliceInst: {fileID: 0}
   aar: {fileID: -4617458268249766225, guid: 2e3d2d04d402675ddbb5d7d622366203, type: 3}
   aarInst: {fileID: 0}
-  bgm: {fileID: 598587049}
   gm: {fileID: 465054105}
   background: {fileID: 1963592068}
 --- !u!1 &349019352
@@ -250,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2926eb1f5e712329090552f15f918f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProgressRoad
+  gameParameter: {fileID: 11400000, guid: 07799fa8a95286ebea61ab8ab65e3450, type: 2}
   progressBack: {fileID: -553224043451174702, guid: 7521682b7a0276a32820b1b17ec450bb, type: 3}
   progressRabbit: {fileID: -327541954255394957, guid: 1d9ae638acab7f4ffa5cfdf98775f6ca, type: 3}
   mileStoneImage: {fileID: 5715755359170780454, guid: 5634e6844a6eacfe6a55c4a8270e4a3a, type: 3}
@@ -584,7 +583,7 @@ MonoBehaviour:
   cutinScene: {fileID: 434490669}
   formulaList: []
   progressRoad: {fileID: 389586081}
-  levelSetting: {fileID: 11400000, guid: 73a0a6c0925ffed798d71bb02146cd04, type: 2}
+  bgm: {fileID: 598587049}
   startTime: 0
   spawnTime: 0
   intervalTime: 5

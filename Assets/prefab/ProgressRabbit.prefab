@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb358fb6e410811facf789ade5f9f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProgressRabbit
+  gameParameter: {fileID: 11400000, guid: 07799fa8a95286ebea61ab8ab65e3450, type: 2}
 --- !u!50 &-2449752864244080134
 Rigidbody2D:
   serializedVersion: 5

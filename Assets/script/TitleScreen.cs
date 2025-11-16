@@ -12,7 +12,6 @@ public class TitleState: IState
     }
 
     public void Enter() {
-        Debug.Log("Enter Title.");
         _gm.kb.SpawnStartLabel();  // タイトル表示とスタートボタン割当
     }
 
@@ -20,6 +19,5 @@ public class TitleState: IState
     }
 
     public void Exit() {
-        Debug.Log("Exit Title.");
     }
 }
