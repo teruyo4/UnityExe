@@ -23,7 +23,6 @@ public class ProgressRabbit : MonoBehaviour {
     }
 
     public float progressMeter() {
-        //        return (transform.localPosition.x + 2f) * 250f;
         return pMeter;
     }
 }

@@ -5,11 +5,14 @@ using System.Threading;
 using UnityEngine;
 using DG.Tweening;
 
+using static Grades;
+
 // キャラクターの１動作を示す
 public struct Operation {
     public float speed;     // 動く速さ
     public float animSpeed; // アニメーションの早さ
-    public int duration;  // 動作の続く時間（ミリ秒数）
+    public int duration;    // 動作の続く時間（ミリ秒数）
+    public float backSpeed; // 背景の動くスピード
 }
 
 public enum Grades {
@@ -63,7 +66,7 @@ public class ChaseScene : MonoBehaviour {
     }
 
     public void StartChase() {
-        ExecuteOperation(Grades.None);
+        ExecuteOperation(None);
         aliceInst.opeFlag = true;
         rabInst.opeFlag = true;
         gm.bgm.MainMusic(csList[cameraPos].bpm);
@@ -76,14 +79,14 @@ public class ChaseScene : MonoBehaviour {
         cts = new();
         SetDefaultOperation();
         switch (grade) {
-            case Grades.Super:
-                opeList.Insert(0, new Operation { speed = 0.008f, animSpeed = 3.0f, duration = 1500 });
+            case Super:
+                opeList.Insert(0, new Operation { speed = 0.008f, animSpeed = 3.0f, duration = 1500, backSpeed = 2.0f });
                 break;
-            case Grades.Good:
-                opeList.Insert(0, new Operation { speed = 0.004f, animSpeed = 2.0f, duration = 1000 });
+            case Good:
+                opeList.Insert(0, new Operation { speed = 0.004f, animSpeed = 2.0f, duration = 1000, backSpeed = 1.5f });
                 break;
-            case Grades.Normal:
-                opeList.Insert(0, new Operation { speed = 0.001f, animSpeed = 1.2f, duration = 500 });
+            case Normal:
+                opeList.Insert(0, new Operation { speed = 0.001f, animSpeed = 1.2f, duration = 500, backSpeed = 1.2f });
                 break;
             default:
                 break;
@@ -95,9 +98,9 @@ public class ChaseScene : MonoBehaviour {
     private void SetDefaultOperation() {
         opeList?.Clear();
         opeList = new List<Operation>() {
-            new Operation { speed = -0.001f, animSpeed = 1.0f, duration = 1000 },
-            new Operation { speed = -0.002f, animSpeed = 0.8f, duration = 1000 },
-            new Operation { speed = -0.004f, animSpeed = 0.6f, duration = 0 }
+            new Operation { speed = -0.001f, animSpeed = 1.0f, duration = 1000, backSpeed = 1.0f },
+            new Operation { speed = -0.002f, animSpeed = 0.8f, duration = 1000, backSpeed = 1.0f },
+            new Operation { speed = -0.004f, animSpeed = 0.6f, duration = 0, backSpeed = 1.0f }
         };
     }
     
@@ -105,6 +108,7 @@ public class ChaseScene : MonoBehaviour {
     private async void ReflectOperation() {
         rabInst.ChangeBehaviour(opeList[0].speed, opeList[0].animSpeed);
         aliceInst.ChangeBehaviour(-opeList[0].speed, 1.0f);
+        background.ChangeScrollSpeed(opeList[0].backSpeed);
         if (opeList.Count > 1) {
             await UniTask.Delay(opeList[0].duration, cancellationToken: cts.Token)
                 .SuppressCancellationThrow()
@@ -132,7 +136,7 @@ public class ChaseScene : MonoBehaviour {
         aliceInst.opeFlag = false;
         ClearCharacter();
         aarInst = Instantiate(aar, transform);
-        aarInst.transform.localPosition = new Vector3(0f, 0f, 0f);
+        aarInst.transform.localPosition = new(0f, 0f, 0f);
         gm.bgm.StopAudio();
         background.StopScroll();
     }

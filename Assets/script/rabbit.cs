@@ -1,6 +1,8 @@
 using UnityEngine;
 using DG.Tweening;
 
+using static Grades;
+
 public class rabbit : MonoBehaviour
 {
     public GameObject superKotodama;
@@ -33,25 +35,25 @@ public class rabbit : MonoBehaviour
     public void ChangeBehaviour(float sp, float animsp) {
         var anim = this.gameObject.GetComponent<Animator>();
         anim.speed = animsp;
-        speedX = sp;
+        // speedX = sp;
     }
 
     public void SpawnKotodama(Grades grade) {
         GameObject kotodama;
         switch (grade) {
-            case Grades.Super:
+            case Super:
                 kotodama = superKotodama;
 				audioS.clip = rabVoice[0];
                 break;
-            case Grades.Good:
+            case Good:
                 kotodama = goodKotodama;
 				audioS.clip = rabVoice[1];
                 break;
-            case Grades.Normal:
+            case Normal:
                 kotodama = okKotodama;
 				audioS.clip = rabVoice[2];
                 break;
-            case Grades.Bad:
+            case Bad:
                 kotodama = badKotodama;
 				audioS.clip = rabVoice[3];
                 break;

@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
     public ChaseScene chaseScene;
     public CutinScene cutinScene;
     public AudioClip[,] audioC = new AudioClip[9, 9];
-    public List<FormulaObj> formulaList = new List<FormulaObj>();
-    public List<Record> records = new List<Record>();
+    public List<FormulaObj> formulaList = new();
+    public List<Record> records = new();
     public ProgressRoad progressRoad;
     public Bgm bgm;
     
