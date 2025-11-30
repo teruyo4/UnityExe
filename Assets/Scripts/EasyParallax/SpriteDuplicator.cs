@@ -42,18 +42,24 @@ namespace EasyParallax
 
             //Now, we need to get the width of our sprite, because we will position the objects based on how wide they are
             spriteWidth = GetComponent<SpriteRenderer>().bounds.size.x;
-
+            Debug.Log($"width1 = {spriteWidth}");
+            spriteWidth = spriteWidth / transform.lossyScale.x * transform.localScale.x;
+            Debug.Log($"width2 = {spriteWidth}");
             //Let's populate our array with enough items. First add this object, as it's part of the pool.
             duplicatesPool[0] = transform;
 
-            var startingPos = transform.position;
+            var startingPos = transform.localPosition;
 
             //Next duplicate this and add the objects, until we fill our pool
             for (var i = 1; i < poolSize; i++)
             {
-                var position = new Vector2(CalculateX(startingPos), startingPos.y);
-                startingPos = position;
-                duplicatesPool[i] = Instantiate(gameObject, position, Quaternion.identity, transform.parent).transform;
+                var localPosition = new Vector2(CalculateX(startingPos), startingPos.y);
+                startingPos = localPosition;
+                Debug.Log($"lx = {startingPos.x}");
+                var position = transform.TransformPoint(localPosition);
+                Debug.Log($"wx = {position.x}");
+                duplicatesPool[i] = Instantiate(gameObject, position, Quaternion.identity,
+                    transform.parent).transform;
                 //It's very important to remove the sprite duplicator script from the copied object
                 //Otherwise we will get an infinite loop of sprite duplication
                 Destroy(duplicatesPool[i].GetComponent<SpriteDuplicator>());
@@ -67,16 +73,16 @@ namespace EasyParallax
             //We will reposition it to be on the right side if it is
             foreach (var duplicate in duplicatesPool)
             {
-                if (duplicate.transform.position.x < -spriteWidth * spriteRepositionIndex)
+                if (duplicate.transform.localPosition.x < -spriteWidth * spriteRepositionIndex)
                 {
                     //In order to reposition it, we need to get which sprite is the rightmost currently
                     var rightmostSprite = GetRightMostSprite();
 
                     //Let's position it to the right of that sprite
-                    var startingPos = rightmostSprite.position;
+                    var startingPos = rightmostSprite.localPosition;
                     var position =
                         new Vector2(CalculateX(startingPos), startingPos.y);
-                    duplicate.transform.position = position;
+                    duplicate.transform.localPosition = position;
                 }
             }
         }
@@ -93,10 +99,10 @@ namespace EasyParallax
             Transform rightmostSprite = null;
             foreach (var duplicate in duplicatesPool)
             {
-                if (!(duplicate.position.x > rightmostX)) continue;
+                if (!(duplicate.localPosition.x > rightmostX)) continue;
 
                 rightmostSprite = duplicate;
-                rightmostX = duplicate.position.x;
+                rightmostX = duplicate.localPosition.x;
             }
 
             return rightmostSprite;
