@@ -44,12 +44,14 @@ public class ProgressRoad : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        // チェックポイントを超えるタイミングで、標識出したりゴールの穴を出したりする。
         if (progressRabbitInst != null && progressRabbitInst.progressMeter() >= mileStone) {
             if (mileStone >= gameParameter.RoadDistance) {
                 Instantiate(hole, chaseScene.transform);
             } else {
                 ms = Instantiate(mileStoneImage, chaseScene.transform);
             }
+            // チェックポイントを100メートル先に再設定する。
             mileStone += 100f;
         }
        
