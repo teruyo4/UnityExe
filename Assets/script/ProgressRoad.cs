@@ -17,11 +17,12 @@ public class ProgressRoad : MonoBehaviour {
     private Animator rbAnim;
 
     private float mileStone;
+    private float leftMile;
 
     private MileStoneImage ms;
 
     public float GetLeftMile() {
-        return gameParameter.RoadDistance - mileStone;
+        return leftMile;
     }
     
     public void SetProgressRoad() {
@@ -50,6 +51,7 @@ public class ProgressRoad : MonoBehaviour {
                 Instantiate(hole, chaseScene.transform);
             } else {
                 ms = Instantiate(mileStoneImage, chaseScene.transform);
+                leftMile = gameParameter.RoadDistance - mileStone;
             }
             // チェックポイントを100メートル先に再設定する。
             mileStone += 100f;

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameParameter
   m_EditorClassIdentifier: Assembly-CSharp::GameParameter
   RoadDistance: 1000
-  BaseSpeed: 10
+  BaseSpeed: 15

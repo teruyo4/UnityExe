@@ -84,7 +84,7 @@ MeshRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1943723121
   m_SortingLayer: 3
-  m_SortingOrder: 6
+  m_SortingOrder: 16
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8726613256530097123
 MonoBehaviour:
@@ -133,8 +133,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 2
-  m_fontSizeBase: 2
+  m_fontSize: 4
+  m_fontSizeBase: 4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

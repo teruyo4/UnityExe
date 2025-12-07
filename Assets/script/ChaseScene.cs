@@ -100,7 +100,7 @@ public class ChaseScene : MonoBehaviour {
         opeList = new List<Operation>() {
             new Operation { speed = -0.001f, animSpeed = 1.0f, duration = 1000, backSpeed = 1.0f },
             new Operation { speed = -0.002f, animSpeed = 0.8f, duration = 1000, backSpeed = 1.0f },
-            new Operation { speed = -0.004f, animSpeed = 0.6f, duration = 0, backSpeed = 1.0f }
+            new Operation { speed = -0.004f, animSpeed = 0.6f, duration = 0, backSpeed = 0.5f }
         };
     }
     
@@ -109,6 +109,7 @@ public class ChaseScene : MonoBehaviour {
         rabInst.ChangeBehaviour(opeList[0].speed, opeList[0].animSpeed);
         aliceInst.ChangeBehaviour(-opeList[0].speed, 1.0f);
         background.ChangeScrollSpeed(opeList[0].backSpeed);
+        Debug.Log($"bgspeed = {opeList[0].backSpeed}");
         if (opeList.Count > 1) {
             await UniTask.Delay(opeList[0].duration, cancellationToken: cts.Token)
                 .SuppressCancellationThrow()
@@ -147,6 +148,7 @@ public class ChaseScene : MonoBehaviour {
         aliceInst.opeFlag = false;
         gm.bgm.RunAWayMusic();
         background.StopScroll();
+        cts?.Cancel();
         DOTween.Sequence().Append(rabInst.transform.DOLocalMove(pos, 1.5f))
         .Join(rabInst.transform.DOLocalMoveY(-0.3f, 1.5f))
         .Join(rabInst.transform.DOScale(new Vector3(0.1f, 0.1f, 0f), 1.5f))

@@ -8,8 +8,8 @@ public class MileStoneImage : MonoBehaviour {
     public ProgressRoad progressRoad;
 
     void Start() {
-        transform.localPosition = new Vector3(4f, -0.3f, 0f);
-        transform.DOLocalMove(new Vector3(-5f, -0.3f, 0f), 4f)
+        transform.localPosition = new Vector3(4f, -0.1f, 0f);
+        transform.DOLocalMove(new Vector3(-5f, -0.1f, 0f), 4f)
         .SetEase(Ease.Linear)
         .SetLink(gameObject)
         .OnComplete(() => {

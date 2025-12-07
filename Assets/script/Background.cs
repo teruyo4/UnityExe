@@ -10,14 +10,12 @@ public class Background : MonoBehaviour {
     }
     
     public void StopScroll() {
-        //        foreach (SpriteDuplicator spriteDuplicator in scene) {
-        //            spriteDuplicator.PauseMovement();
-        //        }
         ChangeScrollSpeed(0f);
     }
 
     public void ChangeScrollSpeed(float magnification) {
         foreach (SpriteDuplicator spriteDuplicator in scene) {
+            Debug.Log($"mag = {magnification}");
             spriteDuplicator.PlayMovement(magnification);
         }
     }

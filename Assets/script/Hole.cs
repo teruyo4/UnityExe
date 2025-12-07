@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Hole : MonoBehaviour {
     void Start() {
-        transform.localPosition = new Vector3(4f, 0f, 0f);
-        transform.DOLocalMove(new Vector3(0f, 0f, 0f), 4f)
+        transform.localPosition = new Vector3(4f, 0.1f, 0f);
+        transform.DOLocalMove(new Vector3(0f, 0.1f, 0f), 4f)
         .SetEase(Ease.Linear)
         .OnComplete(() => {
             Destroy(gameObject);
