@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class FormulaObj : MonoBehaviour {
     public AnswerBox answerBox;
+    public GameObject answer;
     public GameManager gm;
 
     private AudioSource audioS;
@@ -62,6 +63,14 @@ public class FormulaObj : MonoBehaviour {
         await UniTask.Delay(TimeSpan.FromSeconds(1.0f));
         audioS.clip = gm.audioC[lhs-1, rhs-1];
         audioS.Play();
+        // 答えを表示
+        await UniTask.Delay(TimeSpan.FromSeconds(1.0f));
+        GameObject answerIns = Instantiate(answer, transform);
+        answerIns.transform.localPosition = new Vector3(0f, -0.4f, 0f);
+        var TMP = answerIns.transform.GetComponent<TextMeshPro>();
+        TMP.text = $"{numAnswer}";
+        TMP.alpha = 0;
+        TMP.DOFade(1f, 1.2f);
     }
         
     public void FinishFormula() {

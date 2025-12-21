@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelSettings
   settings:
   - levelName: VeryEasy
-    super: 2
-    good: 3
-    normal: 4
-    bad: 6
+    super: 3
+    good: 4
+    normal: 6
+    bad: 8
   - levelName: Easy
     super: 1.5
     good: 2
